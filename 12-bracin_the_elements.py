@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from typing import SupportsBytes
-import numpy as np
 
 def np_elementwise(mat1, mat2):
     """ performs element-wise addition, subtraction,

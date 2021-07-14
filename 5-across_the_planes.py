@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np
 
+
 def add_matrices2D(mat1, mat2):
     """  adds two matrices element-wise """
     mat1 = np.array(mat1)
@@ -8,5 +9,5 @@ def add_matrices2D(mat1, mat2):
     try:
         c = mat1 + mat2
         return c.tolist()
-    except:
+    except ValueError:
         return None

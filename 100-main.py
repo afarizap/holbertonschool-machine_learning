@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
 import numpy as np
+
+
 np_slice = __import__('100-slice_like_a_ninja').np_slice
 
 mat1 = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])

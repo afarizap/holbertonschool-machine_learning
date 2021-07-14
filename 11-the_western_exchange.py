@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np
 
+
 def np_transpose(matrix):
     """ transposes matrix """
     return np.transpose(matrix)
