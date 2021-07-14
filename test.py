@@ -18,3 +18,4 @@ import numpy as np
 # print(np_slice(mat2, axes={0: (2,), 2: (None, None, -2)}))
 axes={0: (2,), 2: (None, None, -2)}
 print(axes.values())
+asdasdas
