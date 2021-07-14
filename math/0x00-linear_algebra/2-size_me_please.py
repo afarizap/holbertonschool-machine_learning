@@ -4,7 +4,8 @@
 
 def matrix_shape(matrix):
     """ Calculates the shape of a matrix """
-    return list(array(matrix).shape)
-
-if __name__ == "__main__":
-    from numpy import array
+    shape = []
+    while type(matrix) == list:
+        shape += [len(matrix)]
+        matrix = matrix[0]
+    return shape
