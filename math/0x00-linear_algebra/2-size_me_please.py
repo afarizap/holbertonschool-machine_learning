@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+from numpy import array
 """ function that returns a matrix shape """
 
 
