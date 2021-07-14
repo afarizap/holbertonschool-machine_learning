@@ -14,7 +14,7 @@ def cat_matrices2D(mat1, mat2, axis=0):
             return new
         if axis == 1:
             for i in range(len(mat1)):
-                new += [mat1[i] + mat2[i]]
+                new += [mat1[i].copy() + mat2[i].copy()]
             return new
     except (ValueError, IndexError):
         return None
