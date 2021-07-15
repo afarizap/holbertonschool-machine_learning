@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import numpy as np
+"""The Western Exchange """
 
 
 def np_transpose(matrix):
     """ transposes matrix """
-    return np.transpose(matrix)
+    return matrix.T
