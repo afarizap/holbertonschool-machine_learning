@@ -7,8 +7,10 @@ def poly_derivative(poly):
     if type(poly) != list or len(poly) == 0:
         return None
     new = []
-    for idx, i in enumerate(poly):
-        new += [i * idx]
-    if new == []:
+    n = 0
+    for i in poly:
+        new += [i * n]
+        n += 1
+    if new[1:] == []:
         return [0]
-    return new
+    return new[1:]
