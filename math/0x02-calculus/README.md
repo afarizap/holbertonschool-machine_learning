@@ -29,5 +29,10 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 - What is a partial derivative?
     ![partial derivative](https://github.com/afarizap/holbertonschool-machine_learning/blob/main/math/0x02-calculus/img/partial_derivative.png?raw=true)
 - What is an indefinite integral?
+    - This can be stated symbolically as F' = f The process of solving for antiderivatives is called antidifferentiation (or indefinite integration), and its opposite operation is called differentiation, which is the process of finding a derivative. 
 - What is a definite integral?
+    - Is the signed area of the region in the plane that is bounded by the graph of a given function between two points in the real line. Conventionally, areas above the horizontal axis of the plane are positive while areas below are negative
+    ![definite integral](https://github.com/afarizap/holbertonschool-machine_learning/blob/main/math/0x02-calculus/img/definite_integral.png?raw=true)
 - What is a double integral?
+    - Double integrals are a way to integrate over a two-dimensional area. Among other things, they lets us compute the volume under a surface.
+    ![double integral](https://github.com/afarizap/holbertonschool-machine_learning/blob/main/math/0x02-calculus/img/double_integral.png?raw=true)
