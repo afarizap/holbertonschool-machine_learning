@@ -14,3 +14,5 @@ n = 1
 print(summation_i_squared(n))
 n = 2
 print(summation_i_squared(n))
+n = 5.0
+print(summation_i_squared(n))

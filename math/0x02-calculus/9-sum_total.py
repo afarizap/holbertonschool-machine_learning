@@ -4,9 +4,9 @@
 
 def summation_i_squared(n):
     """get the series of a squared sequence"""
-    if not str(n).isnumeric() or n < 1:
+    if type(n) not in [int, float] or n < 1:
         return None
     if n == 1:
         return 1
     else:
-        return int(n * n + summation_i_squared(n-1)) 
+        return int(n) * int(n) + summation_i_squared(int(n)-1) 
