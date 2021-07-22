@@ -9,4 +9,4 @@ def summation_i_squared(n):
     if n == 1:
         return 1
     else:
-        return summation_i_squared(n-1) + n * n
+        return int(n * n + summation_i_squared(n-1)) 
