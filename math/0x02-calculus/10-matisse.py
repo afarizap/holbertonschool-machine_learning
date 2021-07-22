@@ -9,6 +9,6 @@ def poly_derivative(poly):
     new = []
     for idx, i in enumerate(poly):
         new += [i * idx]
-    if new[:1] == []:
+    if new == []:
         return [0]
-    return new[1:]
+    return new

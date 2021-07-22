@@ -4,6 +4,8 @@
 
 def summation_i_squared(n):
     """get the series of a squared sequence"""
+    if type(n) != int:
+        return None
     if n == 0:
         return 1
     else:
