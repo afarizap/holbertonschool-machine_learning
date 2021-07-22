@@ -10,7 +10,4 @@ def summation_i_squared(n):
             return None
     except:
         return None
-    if n == 1:
-        return 1
-    else:
-        return n * n + summation_i_squared(n-1) 
+    return int((n * (n+1) * (2*n + 1)) / 6)
