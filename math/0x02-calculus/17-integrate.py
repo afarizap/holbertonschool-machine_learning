@@ -9,11 +9,11 @@ def poly_integral(poly, C=0):
     new = [C]
     i = 1
     for n in poly:
-        #if type(n) not in [int, float]:
-         #   return None
         r = n/i
         i += 1
         if r - int(r) == 0:
             r = int(r)
         new += [r]
+        while new[-1] == 0:
+            new.pop()
     return new
