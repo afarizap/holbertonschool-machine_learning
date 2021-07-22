@@ -22,7 +22,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 - What is the chain rule?
     - Chain rule is a formula to compute the derivative of a composite function. 
-    ![chain rule](https://github.com/afarizap/holbertonschool-machine_learning/blob/main/math/0x02-calculus/img/chain_rule.png?raw=true)
+    ![chain rule](https://raw.githubusercontent.com/afarizap/holbertonschool-machine_learning/main/math/0x02-calculus/imgs/chain_rule.png)
 
 - Common derivative rules
     ![derivative rules](https://www.coastal.edu/media/academics/universitycollege/mathcenter/handouts/calculus/deranint.PDF)
