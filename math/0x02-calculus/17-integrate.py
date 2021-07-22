@@ -6,8 +6,14 @@ def poly_integral(poly, C=0):
     """calculates the integral of a polynomial"""
     if type(poly) != list or type(C) != int:
         return None
-    new = []
-    for i in range(1, len(poly) + 1):
-        new += [poly[i-1]/i]
-    new.insert(0, C)
+    new = [C]
+    i = 1
+    for n in poly:
+        if type(n) not in [int, float]:
+            return None
+        r = n/i
+        i += 1
+        if r - int(r) == 0:
+            r = int(r)
+        new += [r]
     return new
