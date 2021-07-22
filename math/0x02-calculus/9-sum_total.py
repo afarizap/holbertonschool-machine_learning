@@ -4,7 +4,7 @@
 
 def summation_i_squared(n):
     """get the series of a squared sequence"""
-    r = 0
-    for i in range(1, n + 1):
-        r += i ** 2
-    return r
+    if n == 0:
+        return 1
+    else:
+        return n * summation_i_squared(n-1)
