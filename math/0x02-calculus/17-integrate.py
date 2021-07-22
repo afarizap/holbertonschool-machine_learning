@@ -9,8 +9,8 @@ def poly_integral(poly, C=0):
     new = [C]
     i = 1
     for n in poly:
-        if type(n) not in [int, float]:
-            return None
+        #if type(n) not in [int, float]:
+         #   return None
         r = n/i
         i += 1
         if r - int(r) == 0:
