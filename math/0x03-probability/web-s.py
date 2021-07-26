@@ -1,7 +1,9 @@
 # INSTALL BS4 WITH ´pip install beautifulsoup4´
 from bs4 import BeautifulSoup
+import glob
 
-f = open("*.html", "r")
+file_name = glob.glob("*.html")[0]
+f = open(file_name, "r")
 soup = BeautifulSoup(f, features="lxml")
 
 file = soup.find_all('body')
@@ -26,6 +28,10 @@ for _ in new:
         for line in z:
             print(f"{line}" , end="")
     print()
+## Create README
+print("----------------------------------------")
+with open("README.md", 'w+') as f:
+    f.write("Hello README")
 ## Create mains
 print("||||||||| Mains ||||||||||")
 for m in file:
@@ -52,4 +58,3 @@ for m in file:
             with open(title, 'r') as z:
                 for line in z:
                     print(f"{line}" , end="")
-
