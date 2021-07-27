@@ -25,7 +25,7 @@ class Poisson():
         """
         if type(k) is not int:
             k = int(k)
-        if k < 0:
+        if k < 1:
             return 0
         e = 2.7182818285
         factorial = k
