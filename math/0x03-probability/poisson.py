@@ -27,10 +27,7 @@ class Poisson():
             k = int(k)
         e = 2.7182818285
         factorial = 1
-        try:
-            for _ in range(1, k + 1):
-                factorial *= _
-        except e:
-            return 0
+        for _ in range(1, k + 1):
+            factorial *= _
         PMF = ((self.lambtha ** k) * (e ** -self.lambtha)) / factorial
         return PMF
