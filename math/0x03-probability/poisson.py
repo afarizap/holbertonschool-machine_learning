@@ -25,9 +25,11 @@ class Poisson():
         """
         if type(k) is not int:
             k = int(k)
+        if k < 0:
+            return 0
         e = 2.7182818285
-        factorial = 1
-        for _ in range(1, k + 1):
-            factorial *= _
-        PMF = ((self.lambtha ** k) * (e ** -self.lambtha)) / factorial
-        return PMF
+        factorial = k
+        for i in range(1, k):
+            factorial *= i
+        return ((self.lambtha ** k) * (e ** -self.lambtha)) / factorial
+         
