@@ -6,7 +6,7 @@ class Poisson():
     """represents a poisson distribution"""
     def __init__(self, data=None, lambtha=1.):
         """initialize values"""
-        if data:
+        if data is not None:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             if type(data) is not list:
