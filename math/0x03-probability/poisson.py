@@ -17,4 +17,3 @@ class Poisson():
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
         self.lambtha = float(lambtha)
-        
