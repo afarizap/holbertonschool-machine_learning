@@ -2,9 +2,6 @@
 """ poisson task """
 
 
-from numpy import e
-
-
 class Poisson():
     """represents a poisson distribution"""
 
