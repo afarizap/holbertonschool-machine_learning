@@ -8,8 +8,8 @@ class Poisson():
     def __init__(self, data=None, lambtha=1.):
         """initialize values"""
         # self.data = data
-        # if lambtha <= 0:
-        #     raise ValueError("lambtha must be a positive value")
+        if lambtha <= 0:
+            raise ValueError("lambtha must be a positive value")
         # if data is not None:
         #     # Promedio
         #     lambtha = sum(data)/len(data)
