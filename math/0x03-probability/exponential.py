@@ -15,6 +15,6 @@ class Exponential:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             # Promedio
-            lambtha = sum(data)/len(data)
+            lambtha = len(data)/sum(data)
         self.data = data
         self.lambtha = float(lambtha)
