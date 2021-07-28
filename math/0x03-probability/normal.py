@@ -3,6 +3,8 @@
 
 
 class Normal():
+    """represents a normal distribution"""
+
     def __init__(self, data=None, mean=0., stddev=1.):
         """ class constructor
 
