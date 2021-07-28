@@ -21,10 +21,10 @@ class Exponential:
 
     def pdf(self, x):
         """ Calculates the value of the PDF (probability density function)
-            for a given time period 
+            for a given time period
             x: Time period
         """
-        if x < 1:
+        if x < 0:
             return 0
         e = 2.7182818285
         PDF = (self.lambtha * (e ** (-self.lambtha * x)))
