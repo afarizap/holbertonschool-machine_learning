@@ -60,3 +60,16 @@ class Normal():
         b = self.stddev * ((2 * pi)**0.5)
         PDF = a/b
         return PDF
+
+    def cdf(self, x):
+        """ Calculates the value of the CDF (cumulative distribution function)
+            for a given x-value
+            Args:
+            x: the x-value
+            Returns: CDF value for x
+            https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm
+        """
+        e = 2.7182818285
+        pi = 3.1415926536
+        CDF = -2 * pi * (e ** ((x ** 2) / -2)) + 2 * pi
+        return CDF
