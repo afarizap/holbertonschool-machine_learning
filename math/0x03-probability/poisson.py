@@ -32,3 +32,19 @@ class Poisson():
         for i in range(1, k):
             factorial *= i
         return ((self.lambtha ** k) * (e ** -self.lambtha)) / factorial
+
+    def cdf(self, k):
+        """ Calculates the value of the CDF (cumulative distribution function)
+            for a given number (k)
+        """
+        if type(k) is not int:
+            k = int(k)
+        if k < 1:
+            return 0
+        e = 2.7182818285
+        func = []
+        factorial = 1
+        for i in range(1, k + 1):
+            factorial *= i
+            func += [(self.lambtha ** i) / factorial]
+        return (sum(func) + 1) * (e ** -self.lambtha)
