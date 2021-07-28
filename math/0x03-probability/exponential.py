@@ -24,7 +24,7 @@ class Exponential:
             for a given time period 
             x: Time period
         """
-        if x < 0:
+        if x < 1:
             return 0
         e = 2.7182818285
         PDF = (self.lambtha * (e ** (-self.lambtha * x)))

@@ -10,3 +10,4 @@ print('f(1):', e1.pdf(1))
 
 e2 = Exponential(lambtha=2)
 print('f(1):', e2.pdf(1))
+
