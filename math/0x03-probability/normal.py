@@ -46,3 +46,17 @@ class Normal():
         """
         x = (z * self.stddev) + self.mean
         return x
+
+    def pdf(self, x):
+        """ Calculates the value PDF (probability distribution function)
+            for a given x-value
+            Args:
+            x: the x-value
+            Returns: PDF value for x
+        """
+        e = 2.7182818285
+        pi = 3.1415926536
+        a = e ** (((x-self.mean)/self.stddev) ** 2 / -2)
+        b = self.stddev * ((2 * pi)**0.5)
+        PDF = a/b
+        return PDF
