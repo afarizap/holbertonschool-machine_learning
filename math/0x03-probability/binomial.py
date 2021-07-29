@@ -4,6 +4,7 @@
 
 class Binomial():
     """represents a binomial distribution"""
+
     def __init__(self, data=None, n=1, p=0.5):
         """ Initialize Binomial
             Args:
@@ -14,7 +15,7 @@ class Binomial():
         if data is None:
             if n < 0 and type(n) is not int:
                 raise ValueError("n must be a positive value")
-            if p < 0 or 1 < p:
+            if p <= 0 or 1 <= p:
                 raise ValueError("p must be greater than 0 and less than 1")
         else:
             if type(data) is not list:
@@ -32,3 +33,17 @@ class Binomial():
             p = mean / n
         self.n = int(n)
         self.p = float(p)
+
+    def pmf(self, k):
+        """ Calculates the value of the PMF (probability mass function)
+            for a given number of “successes”
+            Args:
+            k: number of “successes” 
+            Return: PMF value for k
+        """
+        if type(k) is not int:
+            k = int(k)
+        if k < 1:
+            return 0
+        PMF = 0
+        return PMF
