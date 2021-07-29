@@ -52,7 +52,7 @@ class Binomial():
         """ Calculates the value of the CDF (Cumulative distribution function)
             for a given number of “successes”
             Args:
-            k: number of “successes” 
+            k: number of “successes”
             return: CDF value for k
         """
         if type(k) is not int:
