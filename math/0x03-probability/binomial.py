@@ -43,7 +43,7 @@ class Binomial():
         """
         if type(k) is not int:
             k = int(k)
-        if k < 1:
+        if k < 0:
             return 0
 
         f_n = self.n
@@ -72,9 +72,9 @@ class Binomial():
         """
         if type(k) is not int:
             k = int(k)
-        if k < 1:
+        if k < 0:
             return 0
         CDF = 0
-        for i in range(1, k + 1):
+        for i in range(k + 1):
             CDF += self.pmf(i)
         return CDF
