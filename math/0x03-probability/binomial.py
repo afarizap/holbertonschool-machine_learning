@@ -38,7 +38,7 @@ class Binomial():
         """ Calculates the value of the PMF (probability mass function)
             for a given number of “successes”
             Args:
-            k: number of “successes” 
+            k: number of “successes”
             Return: PMF value for k
         """
         if type(k) is not int:
