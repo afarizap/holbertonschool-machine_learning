@@ -45,7 +45,22 @@ class Binomial():
             k = int(k)
         if k < 1:
             return 0
-        PMF = 0
+
+        f_n = self.n
+        for i in range(1, self.n):
+            f_n *= i
+
+        f_k = k
+        for i in range(1, k):
+            f_k *= i
+
+        f_nk = self.n - k
+        for i in range(1, self.n - k):
+            f_nk *= i
+
+        binomial_c = f_n / (f_k * f_nk)
+
+        PMF = binomial_c * (self.p ** k) * ((1 - self.p) ** (self.n - k))
         return PMF
 
     def cdf(self, k):
@@ -60,4 +75,6 @@ class Binomial():
         if k < 1:
             return 0
         CDF = 0
+        for i in range(1, k + 1):
+            CDF += self.pmf(i)
         return CDF
