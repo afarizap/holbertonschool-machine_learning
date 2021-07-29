@@ -69,7 +69,16 @@ class Normal():
             Returns: CDF value for x
             https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm
         """
-        e = 2.7182818285
         pi = 3.1415926536
-        CDF = -2 * pi * (e ** ((x ** 2) / -2)) + 2 * pi
+
+        y = (x - self.mean) / (self.stddev + ( 2 ** 0.5))
+        erf1 = y  
+        erf2 = (y ** 3) / 3
+        erf3 = (y ** 5) / 10
+        erf4 = (y ** 7) / 42
+        erf5 = (y ** 9) / 216
+        erf6 = 2 / (pi ** 0.5)
+        erf = erf6 * (erf1 - erf2 + erf3 - erf4 + erf5)
+
+        CDF = (1 + erf) / 2
         return CDF
