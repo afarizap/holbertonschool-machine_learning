@@ -71,8 +71,8 @@ class Normal():
         """
         pi = 3.1415926536
 
-        y = (x - self.mean) / (self.stddev + ( 2 ** 0.5))
-        erf1 = y  
+        y = (x - self.mean) / (self.stddev * (2 ** 0.5))
+        erf1 = y
         erf2 = (y ** 3) / 3
         erf3 = (y ** 5) / 10
         erf4 = (y ** 7) / 42
