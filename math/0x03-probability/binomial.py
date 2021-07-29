@@ -47,3 +47,17 @@ class Binomial():
             return 0
         PMF = 0
         return PMF
+
+    def cdf(self, k):
+        """ Calculates the value of the CDF (Cumulative distribution function)
+            for a given number of “successes”
+            Args:
+            k: number of “successes” 
+            return: CDF value for k
+        """
+        if type(k) is not int:
+            k = int(k)
+        if k < 1:
+            return 0
+        CDF = 0
+        return CDF
