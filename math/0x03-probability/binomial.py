@@ -46,16 +46,16 @@ class Binomial():
         if k < 0:
             return 0
 
-        f_n = self.n
-        for i in range(1, self.n):
+        f_n = 1
+        for i in range(1, self.n + 1):
             f_n *= i
 
-        f_k = k
-        for i in range(1, k):
+        f_k = 1
+        for i in range(1, k + 1):
             f_k *= i
 
-        f_nk = self.n - k
-        for i in range(1, self.n - k):
+        f_nk = 1
+        for i in range(1, self.n - k + 1):
             f_nk *= i
 
         binomial_c = f_n / (f_k * f_nk)
