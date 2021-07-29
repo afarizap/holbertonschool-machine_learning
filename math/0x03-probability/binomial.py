@@ -13,7 +13,7 @@ class Binomial():
             p: probability of a “success”
         """
         if data is None:
-            if n < 0 and type(n) is not int:
+            if n < 0:
                 raise ValueError("n must be a positive value")
             if p <= 0 or 1 <= p:
                 raise ValueError("p must be greater than 0 and less than 1")
