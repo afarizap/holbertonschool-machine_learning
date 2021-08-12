@@ -1,4 +1,4 @@
-# General
+General
 
     - What is tensorflow?
     - What is a session? graph?

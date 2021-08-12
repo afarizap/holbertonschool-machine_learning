@@ -39,7 +39,7 @@ for m in file:
     for main_line in main:
         if "-main." in main_line.text.strip():
             x = main_line.text.strip().split('\n')
-            title = x[0].split(' ')[-1] #se debe cambiar por un find(.py)
+            title = x[0].split(' ')[-2] #se debe cambiar por un find(.py) | cambiar entre[-2] si tiene funciones nomas [-1] si tiene clases
             author = x[0][:5]
             c = 0
             code = ""
