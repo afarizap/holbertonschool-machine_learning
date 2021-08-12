@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+    <title>Project: 0x02. Tensorflow | Holberton Bogotá, Colombia Intranet</title>
+
+    <link rel="stylesheet" href="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/xgz4ilr.css">
+    <link rel="stylesheet" media="all" href="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/application_blue-279c447183b448bddb1fc645fc0211a0ccdca8b3290.css">
+    <script async="" src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/analytics.js"></script><script src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/loader.js"></script>
+    <script src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/application-c25e0bd7f5093caf8e603d03277a2c685fcb4108271c08405.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://intranet.hbtn.io/favicon_blue.ico">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="S+aGjVpDroT/MpDfZnemVekyJM+NPQ9gVXfR5jeyvRSTHhCJQX0gWO0OK4Kp4tXbV3vcnRexQDlBJuECaNzcYw==">
+
+    <link rel="apple-touch-icon" href="https://intranet.hbtn.io/apple-touch-icon_blue.png">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Store user timezone -->
+    <script>
+      Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+    </script>
+
+    <!-- intro.js for interactive onboarding -->
+
+    <!-- React -->
+    <script src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/application-61d02fb361bf44b75584.js"></script>
+    <link rel="stylesheet" media="screen" href="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/application-3daba01b.css">
+
+  </head>
+
+  <body class="
+    signed_in
+    env_production
+    
+    " translate="no" data-theme-suffix="_blue" data-checker-special-theme="">
+
+      <input type="hidden" id="hbtn-slack-url" value="https://holberton.enterprise.slack.com">
+      <nav class="navbar navbar-default navbar-fixed-top topbar visible-xs">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-mobile" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="https://intranet.hbtn.io/">
+      <div class="logo"></div>
+</a>  </div>
+
+  <div class="collapse navbar-collapse navigation" id="navbar-mobile">
+    <ul class="nav navbar-nav">
+      
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Help"><a target="_blank" href="https://students-support.hbtn.io/hc"><div class="icon "><i class="fa fa-info-circle"></i></div><div class="visible-xs">Help</div></a></li>
+
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Planning"><a href="https://intranet.hbtn.io/dashboards/my_planning"><div class="icon "><i class="fa fa-calendar"></i></div><div class="visible-xs">Planning</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-current-projects-item" title="" data-original-title="Projects"><a href="https://intranet.hbtn.io/dashboards/my_current_projects"><div class="icon "><i class="fa fa-code-fork"></i></div><div class="visible-xs">Projects</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Professional track"><a href="https://intranet.hbtn.io/dashboards/my_professional_track"><div class="icon "><i class="fa fa-thumbs-o-up"></i></div><div class="visible-xs">Professional track</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="QA Reviews"><a href="https://intranet.hbtn.io/dashboards/corrections_i_can_make"><div class="icon "><i class="fa fa-check"></i></div><div class="visible-xs">QA Reviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Mock interviews"><a href="https://intranet.hbtn.io/dashboards/my_current_reefineries"><div class="icon "><i class="fa fa-commenting-o"></i></div><div class="visible-xs">Mock interviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Evaluation quizzes"><a href="https://intranet.hbtn.io/dashboards/my_current_evaluation_quizzes"><div class="icon "><i class="fa fa-question"></i></div><div class="visible-xs">Evaluation quizzes</div></a></li>
+
+    <hr title="My resources">
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Curriculums"><a href="https://intranet.hbtn.io/dashboards/my_curriculums"><div class="icon "><i class="fa fa-graduation-cap"></i></div><div class="visible-xs">Curriculums</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-concepts-item" title="" data-original-title="Concepts"><a href="https://intranet.hbtn.io/dashboards/my_concepts"><div class="icon "><i class="fa fa-file-text"></i></div><div class="visible-xs">Concepts</div></a></li>
+    
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-video-rooms" title="" data-original-title="Conference rooms"><a href="https://intranet.hbtn.io/dashboards/video_rooms"><div class="icon "><i class="fa fa-comments"></i></div><div class="visible-xs">Conference rooms</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Servers"><a href="https://intranet.hbtn.io/dashboards/my_server"><div class="icon "><i class="fa fa-server"></i></div><div class="visible-xs">Servers</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-containers" title="" data-original-title="Sandboxes"><a href="https://intranet.hbtn.io/dashboards/my_containers"><div class="icon "><i class="fa fa-terminal"></i></div><div class="visible-xs">Sandboxes</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Tools"><a href="https://intranet.hbtn.io/dashboards/my_tools"><div class="icon "><i class="fa fa-wrench"></i></div><div class="visible-xs">Tools</div></a></li>
+    
+
+      <hr title="My campus">
+
+      
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Peers"><a href="https://intranet.hbtn.io/dashboards/my_peers"><div class="icon "><i class="fa fa-users"></i></div><div class="visible-xs">Peers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Captain's Logs"><a href="https://intranet.hbtn.io/dashboards/my_captain_log"><div class="icon "><i class="fa fa-book"></i></div><div class="visible-xs">Captain's Logs</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Officers"><a href="https://intranet.hbtn.io/dashboards/my_officers"><div class="icon "><i class="fa fa-building"></i></div><div class="visible-xs">Officers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Speakers of the Day"><a href="https://intranet.hbtn.io/dashboards/my_speakers_of_the_day"><div class="icon "><i class="fa fa-microphone"></i></div><div class="visible-xs">Speakers of the Day</div></a></li>
+
+
+<hr class="visible-xs">
+
+<li>
+    <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Slack">
+      <a target="_blank" href="https://holberton.enterprise.slack.com/">
+        <div class="image slack">
+          <div class="inner"></div>
+        </div>
+        <div class="visible-xs">Slack</div>
+</a>    </div>
+
+  <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="My Profile">
+    <a href="https://intranet.hbtn.io/users/my_profile">
+        <div class="image ">
+          <div class="inner" style="background-image: url('https://holbertonintranet.s3.amazonaws.com/users/photos/000/001/633/thumb/profilepic1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210812%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210812T134737Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=b937b048c10ba16ae61cb8ad7e49a0afe4e435b61f8ba0011a7c31c1529af9ca')"></div>
+        </div>
+
+      <div class="visible-xs">My Profile</div>
+</a>  </div>
+</li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      <div class="hidden-xs navigation sidebar">
+  <a class="logo-container" href="https://intranet.hbtn.io/">
+    <div class="logo"></div>
+</a>
+  <ul>
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Help"><a target="_blank" href="https://students-support.hbtn.io/hc"><div class="icon "><i class="fa fa-info-circle"></i></div><div class="visible-xs">Help</div></a></li>
+
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Planning"><a href="https://intranet.hbtn.io/dashboards/my_planning"><div class="icon "><i class="fa fa-calendar"></i></div><div class="visible-xs">Planning</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-current-projects-item" title="" data-original-title="Projects"><a href="https://intranet.hbtn.io/dashboards/my_current_projects"><div class="icon "><i class="fa fa-code-fork"></i></div><div class="visible-xs">Projects</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Professional track"><a href="https://intranet.hbtn.io/dashboards/my_professional_track"><div class="icon "><i class="fa fa-thumbs-o-up"></i></div><div class="visible-xs">Professional track</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="QA Reviews"><a href="https://intranet.hbtn.io/dashboards/corrections_i_can_make"><div class="icon "><i class="fa fa-check"></i></div><div class="visible-xs">QA Reviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Mock interviews"><a href="https://intranet.hbtn.io/dashboards/my_current_reefineries"><div class="icon "><i class="fa fa-commenting-o"></i></div><div class="visible-xs">Mock interviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Evaluation quizzes"><a href="https://intranet.hbtn.io/dashboards/my_current_evaluation_quizzes"><div class="icon "><i class="fa fa-question"></i></div><div class="visible-xs">Evaluation quizzes</div></a></li>
+
+    <hr title="My resources">
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Curriculums"><a href="https://intranet.hbtn.io/dashboards/my_curriculums"><div class="icon "><i class="fa fa-graduation-cap"></i></div><div class="visible-xs">Curriculums</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-concepts-item" title="" data-original-title="Concepts"><a href="https://intranet.hbtn.io/dashboards/my_concepts"><div class="icon "><i class="fa fa-file-text"></i></div><div class="visible-xs">Concepts</div></a></li>
+    
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-video-rooms" title="" data-original-title="Conference rooms"><a href="https://intranet.hbtn.io/dashboards/video_rooms"><div class="icon "><i class="fa fa-comments"></i></div><div class="visible-xs">Conference rooms</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Servers"><a href="https://intranet.hbtn.io/dashboards/my_server"><div class="icon "><i class="fa fa-server"></i></div><div class="visible-xs">Servers</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-containers" title="" data-original-title="Sandboxes"><a href="https://intranet.hbtn.io/dashboards/my_containers"><div class="icon "><i class="fa fa-terminal"></i></div><div class="visible-xs">Sandboxes</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Tools"><a href="https://intranet.hbtn.io/dashboards/my_tools"><div class="icon "><i class="fa fa-wrench"></i></div><div class="visible-xs">Tools</div></a></li>
+    
+
+      <hr title="My campus">
+
+      
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Peers"><a href="https://intranet.hbtn.io/dashboards/my_peers"><div class="icon "><i class="fa fa-users"></i></div><div class="visible-xs">Peers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Captain's Logs"><a href="https://intranet.hbtn.io/dashboards/my_captain_log"><div class="icon "><i class="fa fa-book"></i></div><div class="visible-xs">Captain's Logs</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Officers"><a href="https://intranet.hbtn.io/dashboards/my_officers"><div class="icon "><i class="fa fa-building"></i></div><div class="visible-xs">Officers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Speakers of the Day"><a href="https://intranet.hbtn.io/dashboards/my_speakers_of_the_day"><div class="icon "><i class="fa fa-microphone"></i></div><div class="visible-xs">Speakers of the Day</div></a></li>
+
+
+<hr class="visible-xs">
+
+<li>
+    <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Slack">
+      <a target="_blank" href="https://holberton.enterprise.slack.com/">
+        <div class="image slack">
+          <div class="inner"></div>
+        </div>
+        <div class="visible-xs">Slack</div>
+</a>    </div>
+
+  <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="My Profile">
+    <a href="https://intranet.hbtn.io/users/my_profile">
+        <div class="image ">
+          <div class="inner" style="background-image: url('https://holbertonintranet.s3.amazonaws.com/users/photos/000/001/633/thumb/profilepic1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210812%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210812T134737Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=b937b048c10ba16ae61cb8ad7e49a0afe4e435b61f8ba0011a7c31c1529af9ca')"></div>
+        </div>
+
+      <div class="visible-xs">My Profile</div>
+</a>  </div>
+</li>
+
+
+  </ul>
+</div>
+
+
+    <main>
+      <div id="layout-bars">
+        
+
+        
+
+        
+
+        
+      </div>
+
+      <article class="">
+        
+<div class="project row">
+  <div class="col-xs-12 col-md-10 col-lg-8 contains-images">
+
+      <h1 class="gap">0x02. Tensorflow</h1>
+
+
+  <ul class="list-group metadata" id="project-metadata">
+  <li class="list-group-item">
+    <i class="fa fa-folder-open fa-fw"></i>
+    <em>Specializations &gt; Machine Learning &gt; Supervised Learning</em>
+  </li>
+
+
+    <li class="list-group-item">
+      <i class="fa fa-user fa-fw"></i> By Alexa Orrico, Software Engineer at Holberton School
+    </li>
+
+
+
+
+      <li class="list-group-item">
+        <i class="fa fa-calendar fa-fw"></i>
+            Ongoing project - started 08-11-2021, must end by 08-13-2021 (in about 15 hours)
+          - you're done with <span id="student_task_done_percentage">0</span>% of tasks.
+      </li>
+
+      <li class="list-group-item">
+        <i class="fa fa-check fa-fw"></i>
+          Checker was released at 08-12-2021 12:00 AM
+      </li>
+
+
+      <li class="list-group-item">
+        <i class="fa fa-check-square fa-fw"></i>
+        QA review fully automated.
+      </li>
+
+
+</ul>
+
+
+
+    <div id="project_id" style="display: none" data-project-id="481"></div>
+
+
+
+
+      
+
+      <div class="gap" id="project-description">
+  <p><img src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/6f157fe3360e5ec1ceb6.jpg" alt="" style=""></p>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/NCuz9NxxUi3cSwIPFa2JJw" title="Low Level Intro" target="_blank">Low Level Intro</a>  <strong>(Excluding <code>Datasets</code> and <code>Feature columns</code>)</strong></li>
+<li><a href="https://intranet.hbtn.io/rltoken/37gGDNtBD6VWB0oNJBzvgw" title="Graphs" target="_blank">Graphs</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/6R5R5RMtcecU1sdmMjXoNw" title="Tensors" target="_blank">Tensors</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/YZilxEbcFuvS8kGhRDhCjw" title="Variables" target="_blank">Variables</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/hv3HqhZFTHIf0X5OMMrgRw" title="Placeholders" target="_blank">Placeholders</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/GxnmEnPfxVLA9QRQEM998g" title="Save and Restore" target="_blank">Save and Restore</a> <strong>(Up to <code>Save and restore models</code>, excluded)</strong></li>
+<li><a href="https://intranet.hbtn.io/rltoken/YvqhzzepzXxhivU2L1DqIw" title="TensorFlow, why there are 3 files after saving the model?" target="_blank">TensorFlow, why there are 3 files after saving the model?</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/HIAgr0xW-aEvfCpxEJnj8w" title="Exporting and Importing a MetaGraph" target="_blank">Exporting and Importing a MetaGraph</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/qqVDNbC7gGaHP82zGkJcQQ" title="TensorFlow - import meta graph and use variables from it" target="_blank">TensorFlow - import meta graph and use variables from it</a> </li>
+</ul>
+
+<p><strong>References</strong>: </p>
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/TbSeD8MOTEJwsohwwK64Og" title="tf.Graph" target="_blank">tf.Graph</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/infyePgJiCFB1U3bjJtIwg" title="tf.Session" target="_blank">tf.Session</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/8ajLSmNmwxAnyGiY47cvmg" title="tf.Session.run" target="_blank">tf.Session.run</a> </li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/1gpB1z9ptlePj5Iq4Tfyyw" title="tf.Tensor" target="_blank">tf.Tensor</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/KYblPwi0zDfxVd9LBkkMoA" title="tf.Variable" target="_blank">tf.Variable</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/M7s4gxCwIQ7TVH6zCT2YmQ" title="tf.constant" target="_blank">tf.constant</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/Gsar0Zmc7qjm88eMscHyyA" title="tf.placeholder" target="_blank">tf.placeholder</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/M7GgNusP8s1AtUPfpB6ZDQ" title="tf.Operation" target="_blank">tf.Operation</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/CktRWcAj2FoAZYty-ZH8RA" title="tf.layers" target="_blank">tf.layers</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/nUEZ1NneM8nKz076yGN9mA" title="tf.layers.Dense" target="_blank">tf.layers.Dense</a> </li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/TlYNLPU6qFryRNO9gnOENA" title="tf.contrib.layers.variance_scaling_initializer" target="_blank">tf.contrib.layers.variance_scaling_initializer</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/QGpJMlscoeM40MAFm9MhQA" title="tf.nn" target="_blank">tf.nn</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/_Vz8d--SWiB2vV_Pvc4DHg" title="tf.nn.relu" target="_blank">tf.nn.relu</a></li>
+<li><a href="https://intranet.hbtn.io/rltoken/XrNyw-JqRkZbRizUr0vDuw" title="tf.nn.sigmoid" target="_blank">tf.nn.sigmoid</a></li>
+<li><a href="https://intranet.hbtn.io/rltoken/eAMpEIxRRFVyYW_hSgGAiA" title="tf.nn.tanh" target="_blank">tf.nn.tanh</a></li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/UeKK4-AU3ved6LDqWC5Jqw" title="tf.losses" target="_blank">tf.losses</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/-EAXiuDfwG3vRJWoT9dQXQ" title="tf.losses.softmax_cross_entropy" target="_blank">tf.losses.softmax_cross_entropy</a> </li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/PibDlLzY868MjsnN0rClMw" title="tf.train" target="_blank">tf.train</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/ol5IIMmshNODLl0o0C-y0A" title="tf.train.GradientDescentOptimizer" target="_blank">tf.train.GradientDescentOptimizer</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/KUncv1A0Bpbme-y1IkuxGA" title="tf.train.GradientDescentOptimizer.minimize" target="_blank">tf.train.GradientDescentOptimizer.minimize</a> </li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/Lor8NfNcQV3hoSVr5c8QHg" title="tf.train.Saver" target="_blank">tf.train.Saver</a> 
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/Lor8NfNcQV3hoSVr5c8QHg" title="tf.train.Saver.save" target="_blank">tf.train.Saver.save</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/Lor8NfNcQV3hoSVr5c8QHg" title="tf.train.Saver.restore" target="_blank">tf.train.Saver.restore</a></li>
+</ul></li>
+</ul></li>
+<li><a href="https://intranet.hbtn.io/rltoken/9IQdGI9QLowCejMv3CVl6g" title="tf.add_to_collection" target="_blank">tf.add_to_collection</a></li>
+<li><a href="https://intranet.hbtn.io/rltoken/J4hJnLXeSleN2ZzIM8Fotg" title="tf.get_collection" target="_blank">tf.get_collection</a></li>
+<li><a href="https://intranet.hbtn.io/rltoken/EBxOjAAUzcmSnuxsuszWuw" title="tf.global_variables_initializer" target="_blank">tf.global_variables_initializer</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/EB8VWs61u_yiEBFqtNkdjA" title="tf.argmax" target="_blank">tf.argmax</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/VjS8GfzTkWGEwutbuY-v-g" title="tf.equal" target="_blank">tf.equal</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/TBb2GYY_reysO2huNAeVWw" title="tf.set_random_seed" target="_blank">tf.set_random_seed</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/nxW64Pqj0lpC2QhMY48OeA" title="tf.name_scope" target="_blank">tf.name_scope</a> </li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>At the end of this project, you are expected to be able to <a href="https://intranet.hbtn.io/rltoken/03_SltHsbnq4Xa_4af5P6g" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+
+<h3>General</h3>
+
+<ul>
+<li>What is tensorflow?</li>
+<li>What is a session? graph?</li>
+<li>What are tensors?</li>
+<li>What are variables? constants? placeholders? How do you use them?</li>
+<li>What are operations? How do you use them?</li>
+<li>What are namespaces? How do you use them?</li>
+<li>How to train a neural network in tensorflow</li>
+<li>What is a checkpoint?</li>
+<li>How to save/load a model with tensorflow</li>
+<li>What is the graph collection?</li>
+<li>How to add and get variables from the collection</li>
+</ul>
+
+<h2>Requirements</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be interpreted/compiled on Ubuntu 16.04 LTS using <code>python3</code> (version 3.5)</li>
+<li>Your files will be executed with <code>numpy</code> (version 1.15) and <code>tensorflow</code> (version 1.12)</li>
+<li>All your files should end with a new line</li>
+<li>The first line of all your files should be exactly <code>#!/usr/bin/env python3</code></li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>Your code should use the <code>pycodestyle</code> style (version 2.4)</li>
+<li>All your modules should have documentation (<code>python3 -c 'print(__import__("my_module").__doc__)'</code>)</li>
+<li>All your classes should have documentation (<code>python3 -c 'print(__import__("my_module").MyClass.__doc__)'</code>)</li>
+<li>All your functions (inside and outside a class) should have documentation (<code>python3 -c 'print(__import__("my_module").my_function.__doc__)'</code> and <code>python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'</code>)</li>
+<li>Unless otherwise noted, you are not allowed to import any module except <code>import tensorflow as tf</code></li>
+<li>You are not allowed to use the <code>keras</code> module in <code>tensorflow</code></li>
+<li>All your files must be executable</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+</ul>
+
+<h2>More Info</h2>
+
+<h3>Installing Tensorflow 1.12</h3>
+
+<pre><code>$ pip install --user tensorflow==1.12
+</code></pre>
+
+</div>
+
+
+      
+
+      
+
+        
+          <h2 class="gap">Tasks</h2>
+
+    <div data-role="task3675" data-position="1" id="task-num-0">
+      <div class="panel panel-default task-card " id="task-3675">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      0. Placeholders
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def create_placeholders(nx, classes):</code> that returns two placeholders, <code>x</code> and <code>y</code>, for the neural network:</p>
+
+<ul>
+<li><code>nx</code>: the number of feature columns in our data</li>
+<li><code>classes</code>: the number of classes in our classifier</li>
+<li>Returns: placeholders named <code>x</code> and <code>y</code>, respectively
+
+<ul>
+<li><code>x</code> is the placeholder for the input data to the neural network</li>
+<li><code>y</code> is the placeholder for the one-hot labels for the input data </li>
+</ul></li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 0-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+
+x, y = create_placeholders(784, 10)
+print(x)
+print(y)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./0-main.py 
+Tensor("x:0", shape=(?, 784), dtype=float32)
+Tensor("y:0", shape=(?, 10), dtype=float32)
+ubuntu@alexa-ml:~/0x02-tensorflow$ 
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>0-create_placeholders.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3675">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3675" data-project-id="481" data-toggle="modal" data-target="#task-3675-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3675-users-done-modal" data-task-id="3675" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "0. Placeholders"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3675" data-toggle="modal" data-target="#task-test-correction-3675-correction-modal" id="task-num-0-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3675-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "0. Placeholders"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3675">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3675">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3675">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3676" data-position="2" id="task-num-1">
+      <div class="panel panel-default task-card " id="task-3676">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      1. Layers
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def create_layer(prev, n, activation):</code></p>
+
+<ul>
+<li><code>prev</code> is the tensor output of the previous layer</li>
+<li><code>n</code> is the number of nodes in the layer to create</li>
+<li><code>activation</code> is the activation function that the layer should use</li>
+<li>use <code>tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")</code> to implement <code>He et. al</code> initialization for the layer weights</li>
+<li>each layer should be given the name <code>layer</code></li>
+<li>Returns: the tensor output of the layer</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 1-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+create_layer = __import__('1-create_layer').create_layer
+
+x, y = create_placeholders(784, 10)
+l = create_layer(x, 256, tf.nn.tanh)
+print(l)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./1-main.py 
+Tensor("layer/Tanh:0", shape=(?, 256), dtype=float32)
+ubuntu@alexa-ml:~/0x02-tensorflow$ 
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>1-create_layer.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3676">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3676" data-project-id="481" data-toggle="modal" data-target="#task-3676-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3676-users-done-modal" data-task-id="3676" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "1. Layers"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3676" data-toggle="modal" data-target="#task-test-correction-3676-correction-modal" id="task-num-1-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3676-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "1. Layers"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3676">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3676">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3676">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3677" data-position="3" id="task-num-2">
+      <div class="panel panel-default task-card " id="task-3677">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      2. Forward Propagation
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def forward_prop(x, layer_sizes=[], activations=[]):</code> that creates the forward propagation graph for the neural network:</p>
+
+<ul>
+<li><code>x</code> is the placeholder for the input data</li>
+<li><code>layer_sizes</code> is a list containing the number of nodes in each layer of the network</li>
+<li><code>activations</code> is a list containing the activation functions for each layer of the network</li>
+<li>Returns: the prediction of the network in tensor form</li>
+<li>For this function, you should import your <code>create_layer</code> function with <code>create_layer = __import__('1-create_layer').create_layer</code></li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 2-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+forward_prop = __import__('2-forward_prop').forward_prop
+
+x, y = create_placeholders(784, 10)
+y_pred = forward_prop(x, [256, 256, 10], [tf.nn.tanh, tf.nn.tanh, None])
+print(y_pred)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./2-main.py 
+Tensor("layer_2/BiasAdd:0", shape=(?, 10), dtype=float32)
+ubuntu@alexa-ml:~/0x02-tensorflow$ 
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>2-forward_prop.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3677">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3677" data-project-id="481" data-toggle="modal" data-target="#task-3677-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3677-users-done-modal" data-task-id="3677" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "2. Forward Propagation"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3677" data-toggle="modal" data-target="#task-test-correction-3677-correction-modal" id="task-num-2-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3677-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "2. Forward Propagation"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3677">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3677">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3677">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3678" data-position="4" id="task-num-3">
+      <div class="panel panel-default task-card " id="task-3678">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      3. Accuracy
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def calculate_accuracy(y, y_pred):</code> that calculates the accuracy of a prediction:</p>
+
+<ul>
+<li><code>y</code> is a placeholder for the labels of the input data</li>
+<li><code>y_pred</code> is a tensor containing the network’s predictions</li>
+<li>Returns: a tensor containing the decimal accuracy of the prediction <br>
+<em>hint</em>:  accuracy = correct_predictions / all_predictions</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 3-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+forward_prop = __import__('2-forward_prop').forward_prop
+calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
+
+x, y = create_placeholders(784, 10)
+y_pred = forward_prop(x, [256, 256, 10], [tf.nn.tanh, tf.nn.tanh, None])
+accuracy = calculate_accuracy(y, y_pred)
+print(accuracy)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./3-main.py 
+Tensor("Mean:0", shape=(), dtype=float32)
+ubuntu@alexa-ml:~/0x02-tensorflow$
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>3-calculate_accuracy.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3678">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3678" data-project-id="481" data-toggle="modal" data-target="#task-3678-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3678-users-done-modal" data-task-id="3678" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "3. Accuracy"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3678" data-toggle="modal" data-target="#task-test-correction-3678-correction-modal" id="task-num-3-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3678-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "3. Accuracy"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3678">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3678">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3678">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3679" data-position="5" id="task-num-4">
+      <div class="panel panel-default task-card " id="task-3679">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      4. Loss
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def calculate_loss(y, y_pred):</code> that calculates the softmax cross-entropy loss of a prediction:</p>
+
+<ul>
+<li><code>y</code> is a placeholder for the labels of the input data</li>
+<li><code>y_pred</code> is a tensor containing the network’s predictions</li>
+<li>Returns: a tensor containing the loss of the prediction</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 4-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+forward_prop = __import__('2-forward_prop').forward_prop
+calculate_loss = __import__('4-calculate_loss').calculate_loss
+
+x, y = create_placeholders(784, 10)
+y_pred = forward_prop(x, [256, 256, 10], [tf.nn.tanh, tf.nn.tanh, None])
+loss = calculate_loss(y, y_pred)
+print(loss)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./4-main.py 
+Tensor("softmax_cross_entropy_loss/value:0", shape=(), dtype=float32)
+ubuntu@alexa-ml:~/0x02-tensorflow$ 
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>4-calculate_loss.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3679">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3679" data-project-id="481" data-toggle="modal" data-target="#task-3679-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3679-users-done-modal" data-task-id="3679" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "4. Loss"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3679" data-toggle="modal" data-target="#task-test-correction-3679-correction-modal" id="task-num-4-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3679-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "4. Loss"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3679">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3679">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3679">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3680" data-position="6" id="task-num-5">
+      <div class="panel panel-default task-card " id="task-3680">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      5. Train_Op
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def create_train_op(loss, alpha):</code> that creates the training operation for the network:</p>
+
+<ul>
+<li><code>loss</code> is the loss of the network’s prediction</li>
+<li><code>alpha</code> is the learning rate</li>
+<li>Returns: an operation that trains the network using gradient descent</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 5-main.py 
+#!/usr/bin/env python3
+
+import tensorflow as tf
+
+create_placeholders = __import__('0-create_placeholders').create_placeholders
+forward_prop = __import__('2-forward_prop').forward_prop
+calculate_loss = __import__('4-calculate_loss').calculate_loss
+create_train_op = __import__('5-create_train_op').create_train_op
+
+
+x, y = create_placeholders(784, 10)
+y_pred = forward_prop(x, [256, 256, 10], [tf.nn.tanh, tf.nn.tanh, None])
+loss = calculate_loss(y, y_pred)
+train_op = create_train_op(loss, 0.01)
+print(train_op)
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./5-main.py 
+name: "GradientDescent"
+op: "NoOp"
+input: "^GradientDescent/update_layer/kernel/ApplyGradientDescent"
+input: "^GradientDescent/update_layer/bias/ApplyGradientDescent"
+input: "^GradientDescent/update_layer_1/kernel/ApplyGradientDescent"
+input: "^GradientDescent/update_layer_1/bias/ApplyGradientDescent"
+input: "^GradientDescent/update_layer_2/kernel/ApplyGradientDescent"
+input: "^GradientDescent/update_layer_2/bias/ApplyGradientDescent"
+
+ubuntu@alexa-ml:~/0x02-tensorflow$ 
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>5-create_train_op.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3680">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3680" data-project-id="481" data-toggle="modal" data-target="#task-3680-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3680-users-done-modal" data-task-id="3680" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "5. Train_Op"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3680" data-toggle="modal" data-target="#task-test-correction-3680-correction-modal" id="task-num-5-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3680-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "5. Train_Op"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3680">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3680">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3680">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3681" data-position="7" id="task-num-6">
+      <div class="panel panel-default task-card " id="task-3681">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      6. Train
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, iterations, save_path="/tmp/model.ckpt"):</code> that builds, trains, and saves a neural network classifier:</p>
+
+<ul>
+<li><code>X_train</code> is a <code>numpy.ndarray</code> containing the training input data</li>
+<li><code>Y_train</code> is a <code>numpy.ndarray</code> containing the training labels</li>
+<li><code>X_valid</code> is a <code>numpy.ndarray</code> containing the validation input data</li>
+<li><code>Y_valid</code> is a <code>numpy.ndarray</code> containing the validation labels</li>
+<li><code>layer_sizes</code> is a list containing the number of nodes in each layer of the network</li>
+<li><code>activations</code> is a list containing the activation functions for each layer of the network</li>
+<li><code>alpha</code> is the learning rate</li>
+<li><code>iterations</code> is the number of iterations to train over</li>
+<li><code>save_path</code> designates where to save the model</li>
+<li>Add the following to the graph’s collection
+
+<ul>
+<li>placeholders <code>x</code> and <code>y</code></li>
+<li>tensors <code>y_pred</code>, <code>loss</code>, and <code>accuracy</code></li>
+<li>operation <code>train_op</code></li>
+</ul></li>
+<li>After every 100 iterations, the 0th iteration, and <code>iterations</code> iterations, print the following:
+
+<ul>
+<li><code>After {i} iterations:</code> where i is the iteration</li>
+<li><code>\tTraining Cost: {cost}</code> where <code>{cost}</code> is the training cost</li>
+<li><code>\tTraining Accuracy: {accuracy}</code> where <code>{accuracy}</code> is the training accuracy</li>
+<li><code>\tValidation Cost: {cost}</code> where <code>{cost}</code> is the validation cost</li>
+<li><code>\tValidation Accuracy: {accuracy}</code> where <code>{accuracy}</code> is the validation accuracy</li>
+</ul></li>
+<li><em>Reminder: the 0th iteration represents the model before any training has occurred</em></li>
+<li>After training has completed, save the model to <code>save_path</code></li>
+<li>You may use the following imports:
+
+<ul>
+<li><code>calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy</code></li>
+<li><code>calculate_loss = __import__('4-calculate_loss').calculate_loss</code></li>
+<li><code>create_placeholders = __import__('0-create_placeholders').create_placeholders</code></li>
+<li><code>create_train_op = __import__('5-create_train_op').create_train_op</code></li>
+<li><code>forward_prop = __import__('2-forward_prop').forward_prop</code></li>
+</ul></li>
+<li>You are not allowed to use <code>tf.saved_model</code></li>
+<li>Returns: the path where the model was saved</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 6-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+import tensorflow as tf
+train = __import__('6-train').train
+
+def one_hot(Y, classes):
+    """convert an array to a one-hot matrix"""
+    one_hot = np.zeros((Y.shape[0], classes))
+    one_hot[np.arange(Y.shape[0]), Y] = 1
+    return one_hot
+
+if __name__ == '__main__':
+    lib= np.load('../data/MNIST.npz')
+    X_train_3D = lib['X_train']
+    Y_train = lib['Y_train']
+    X_train = X_train_3D.reshape((X_train_3D.shape[0], -1))
+    Y_train_oh = one_hot(Y_train, 10)
+    X_valid_3D = lib['X_valid']
+    Y_valid = lib['Y_valid']
+    X_valid = X_valid_3D.reshape((X_valid_3D.shape[0], -1))
+    Y_valid_oh = one_hot(Y_valid, 10)
+
+    layer_sizes = [256, 256, 10]
+    activations = [tf.nn.tanh, tf.nn.tanh, None]
+    alpha = 0.01
+    iterations = 1000
+
+    tf.set_random_seed(0)
+    save_path = train(X_train, Y_train_oh, X_valid, Y_valid_oh, layer_sizes,
+                      activations, alpha, iterations, save_path="./model.ckpt")
+    print("Model saved in path: {}".format(save_path))
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./6-main.py 
+2018-11-03 01:04:55.281078: I tensorflow/core/common_runtime/process_util.cc:69] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+After 0 iterations:
+    Training Cost: 2.8232274055480957
+    Training Accuracy: 0.08726000040769577
+    Validation Cost: 2.810533285140991
+    Validation Accuracy: 0.08640000224113464
+After 100 iterations:
+    Training Cost: 0.8393384218215942
+    Training Accuracy: 0.7824000120162964
+    Validation Cost: 0.7826032042503357
+    Validation Accuracy: 0.8061000108718872
+After 200 iterations:
+    Training Cost: 0.6094841361045837
+    Training Accuracy: 0.8396000266075134
+    Validation Cost: 0.5562412142753601
+    Validation Accuracy: 0.8597999811172485
+
+...
+
+After 1000 iterations:
+    Training Cost: 0.352960467338562
+    Training Accuracy: 0.9004999995231628
+    Validation Cost: 0.32148978114128113
+    Validation Accuracy: 0.909600019454956
+Model saved in path: ./model.ckpt
+ubuntu@alexa-ml:~/0x02-tensorflow$ ls model.ckpt*
+model.ckpt.data-00000-of-00001  model.ckpt.index  model.ckpt.meta
+ubuntu@alexa-ml:~/0x02-tensorflow$
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>6-train.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3681">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3681" data-project-id="481" data-toggle="modal" data-target="#task-3681-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3681-users-done-modal" data-task-id="3681" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "6. Train"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3681" data-toggle="modal" data-target="#task-test-correction-3681-correction-modal" id="task-num-6-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3681-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "6. Train"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3681">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3681">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3681">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3682" data-position="8" id="task-num-7">
+      <div class="panel panel-default task-card " id="task-3682">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      7. Evaluate
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+
+    <!-- Task Body -->
+    <p>Write the function <code>def evaluate(X, Y, save_path):</code> that evaluates the output of a neural network:</p>
+
+<ul>
+<li><code>X</code> is a <code>numpy.ndarray</code> containing the input data to evaluate</li>
+<li><code>Y</code> is a <code>numpy.ndarray</code> containing the one-hot labels for <code>X</code></li>
+<li><code>save_path</code> is the location to load the model from</li>
+<li>Import the meta graph</li>
+<li>Get the following from the graph’s collection:
+
+<ul>
+<li>tensors <code>y_pred</code>, <code>loss</code>,  and <code>accuracy</code></li>
+</ul></li>
+<li>You are not allowed to use <code>tf.saved_model</code></li>
+<li>Returns: the network’s prediction, accuracy, and loss, respectively</li>
+</ul>
+
+<pre><code>ubuntu@alexa-ml:~/0x02-tensorflow$ cat 7-main.py 
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+evaluate = __import__('7-evaluate').evaluate
+
+def one_hot(Y, classes):
+    """convert an array to a one-hot matrix"""
+    one_hot = np.zeros((Y.shape[0], classes))
+    one_hot[np.arange(Y.shape[0]), Y] = 1
+    return one_hot
+
+if __name__ == '__main__':
+    lib= np.load('../data/MNIST.npz')
+    X_test_3D = lib['X_test']
+    Y_test = lib['Y_test']
+    X_test = X_test_3D.reshape((X_test_3D.shape[0], -1))
+    Y_test_oh = one_hot(Y_test, 10)
+
+    Y_pred_oh, accuracy, cost = evaluate(X_test, Y_test_oh, './model.ckpt')
+    print("Test Accuracy:", accuracy)
+    print("Test Cost:", cost)
+
+    Y_pred = np.argmax(Y_pred_oh, axis=1)
+
+    fig = plt.figure(figsize=(10, 10))
+    for i in range(100):
+        fig.add_subplot(10, 10, i + 1)
+        plt.imshow(X_test_3D[i])
+        plt.title(str(Y_test[i]) + ' : ' + str(Y_pred[i]))
+        plt.axis('off')
+    plt.tight_layout()
+    plt.show()
+ubuntu@alexa-ml:~/0x02-tensorflow$ ./7-main.py
+2018-11-03 02:08:30.767168: I tensorflow/core/common_runtime/process_util.cc:69] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+Test Accuracy: 0.9096
+Test Cost: 0.32148978
+</code></pre>
+
+<p><img src="Project%200x02.%20Tensorflow%20|%20Holberton%20Bogot%C3%A1,%20Colombia%20Intranet_files/1a553e937dc9500036f8.png" alt="" style=""></p>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x02-tensorflow</code></li>
+            <li>File: <code>7-evaluate.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3682">
+      <span class="no"><i class="fa fa-square-o"></i></span>
+      <span class="yes"><i class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3682" data-project-id="481" data-toggle="modal" data-target="#task-3682-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3682-users-done-modal" data-task-id="3682" data-project-id="481">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "7. Evaluate"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3682" data-toggle="modal" data-target="#task-test-correction-3682-correction-modal" id="task-num-7-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3682-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "7. Evaluate"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3682">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3682">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="help-container" data-task-id="3682">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+      </article>
+
+      <div class="copyright">Copyright © 2021 Holberton Inc, All rights reserved.</div>
+    </main>
+
+      <button class="btn btn-primary" id="search-button" data-search-active="false" data-toggle="modal" data-target="#search-modal">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <i class="fa fa-window-minimize" aria-hidden="true"></i>
+</button>
+
+      <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="search-modal-label">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="search-bar-container">
+    <input id="search-bar" type="text" name="hbtn-search-bar" placeholder="✨Start search by typing in this field✨">
+</div>
+
+            </div>
+            <div class="modal-body">
+                <div id="modal-spinner" class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div id="search-results-container">
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+      <div class="modal fade" id="markdownGuideModal" tabindex="-1" role="dialog" aria-labelledby="markdownGuideModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Markdown Guide</h4>
+        </div>
+        <div class="modal-body">
+            <h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>&gt; This is a quote.
+&gt; It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create',
+            'UA-67152800-6',
+            'auto', {
+              userId: '1633'
+            }
+          );
+
+        ga('send', 'pageview');
+
+        $(document).ready(function() {
+          ga(function(tracker) {
+            var clientId = tracker.get('clientId');
+            $('.ga-client-id').val(clientId);
+          });
+        });
+      </script>
+
+
+
+      <input id="checker_pride_assets" type="hidden" value="[]">
+
+      
+  
+
+</body></html>
