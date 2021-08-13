@@ -48,7 +48,7 @@ class Neuron:
         """
         z = np.matmul(self.W, x) + self.b
         self.__A = 1/(1 + np.exp(-z))
-        return self.A
+        return self.__A
 
     def cost(self, Y, A):
         """Calculates the cost of the model using logistic regression
@@ -59,9 +59,10 @@ class Neuron:
             activated output of the neuron for each example
         returns the cost
         """
-        part_A = Y * np.log(A)
-        part_B = (1 - Y) * np.log(1.0000001 - A)
-        return float((-1 / Y.shape[1]) * np.sum(part_A + part_B))
+        m = Y.shape[1]
+        sumatory = np.sum(Y * np.log(A) + (1 - Y) * (np.log(1.0000001 - A)))
+        c = -(1 / m) * sumatory
+        return c
 
     def evaluate(self, X, Y):
         """ Evaluates the neuron’s predictions
@@ -81,10 +82,8 @@ class Neuron:
              is >= 0.5 and 0 otherwise
         """
         A = self.forward_prop(X)
-        cost = self.cost(Y, A)
-        prediction = np.zeros((1, Y.shape[1]), dtype=int)
-        prediction[A >= 0.5] = 1
-        return prediction, cost
+        a = np.where(A < 0.5, 0, 1)
+        return a, self.cost(Y, A)
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
         """
@@ -101,11 +100,11 @@ class Neuron:
         Updates the private attributes __W and __b
         """
         m = Y.shape[1]
-        dZ = A - Y
-        dW = np.matmul(dZ, X.T) / m
-        db = np.sum(dZ) / m
-        self.__W = self.W - alpha * dW
-        self.__b = self.b - alpha * db
+        dW = np.matmul(A - Y, X.T) / m
+        db = np.sum(A - Y) / m
+        
+        self.__W = self.__W - alpha * dW
+        self.__b = self.__b - alpha * db
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """
