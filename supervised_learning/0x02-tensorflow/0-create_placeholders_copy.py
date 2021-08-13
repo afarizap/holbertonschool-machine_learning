@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ 0-create_placeholders task """
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 
 
 def create_placeholders(nx, classes):
@@ -12,6 +13,6 @@ def create_placeholders(nx, classes):
         x is the placeholder for the input data to the neural network
         y is the placeholder for the one-hot labels for the input data
     """
-    x = tf.placeholder(tf.float32, shape=(1, nx), name='x')
-    y = tf.placeholder(tf.float32, shape=(1, classes), name='y')
+    x = tf.compat.v1.placeholder(tf.float32, shape=(1, nx), name='x')
+    y = tf.compat.v1.placeholder(tf.float32, shape=(1, classes), name='y')
     return x, y
