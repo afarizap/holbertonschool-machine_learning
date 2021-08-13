@@ -48,7 +48,7 @@ class Neuron:
         """
         z = np.matmul(self.W, x) + self.b
         self.__A = 1/(1 + np.exp(-z))
-        return self.A
+        return self.__A
 
     def cost(self, Y, A):
         """Calculates the cost of the model using logistic regression
@@ -59,6 +59,7 @@ class Neuron:
             activated output of the neuron for each example
         returns the cost
         """
-        part_A = Y * np.log(A)
-        part_B = (1 - Y) * np.log(1.0000001 - A)
-        return float((-1 / Y.shape[1]) * np.sum(part_A + part_B))
+        m = Y.shape[1]
+        sumatory = np.sum(Y * np.log(A) + (1 - Y) * (np.log(1.0000001 - A)))
+        c = -(1 / m) * sumatory
+        return c
