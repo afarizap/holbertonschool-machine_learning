@@ -15,4 +15,4 @@ def shuffle_data(X, Y):
     """
     new_X = np.random.permutation(X)
     new_Y = np.random.permutation(Y)
-    return X, Y
+    return new_X, new_Y
