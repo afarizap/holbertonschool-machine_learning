@@ -10,9 +10,6 @@ def normalization_constants(X):
             nx is the number of features
         Returns: the mean and standard deviation of each feature, respectively
     """
-    mean = []
-    stdev = []
-    for i in X.T:
-        mean += [i.mean()]
-        stdev += [np.std(i)]
+    mean = np.mean(X, axis=0)
+    stdev = np.std(X, axis=0)
     return mean, stdev
