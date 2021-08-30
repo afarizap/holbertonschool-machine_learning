@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+    <title>Project: 0x04. Error Analysis | Holberton Bogotá, Colombia Intranet</title>
+
+    <link rel="stylesheet" href="error_analysis_files/xgz4ilr.css">
+    <link rel="stylesheet" media="all" href="error_analysis_files/application_blue-279c447183b448bddb1fc645fc0211a0ccdca8b3290.css">
+    <script async="" src="error_analysis_files/analytics.js"></script><script src="error_analysis_files/loader.js"></script>
+    <script src="error_analysis_files/application-433794bae5d763f21560f8ce9eb9d8033eaa5dd32f4cfc1d9.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://intranet.hbtn.io/favicon_blue.ico">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="4PFhsLbwEUCkZ/ZBb7/ZKDHAHUp30aSsZYh/PF/QJtarTu6NFH0WM9amgIYQr+goGbml9Gi82xKEKoFM6zubGw==">
+
+    <link rel="apple-touch-icon" href="https://intranet.hbtn.io/apple-touch-icon_blue.png">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Store user timezone -->
+    <script>
+      Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0);
+    </script>
+
+    <!-- intro.js for interactive onboarding -->
+
+    <!-- React -->
+    <script src="error_analysis_files/application-0d6e96b35ebbb0d9e257.js"></script>
+    <link rel="stylesheet" media="screen" href="error_analysis_files/application-515767d8.css">
+
+  </head>
+
+  <body class="
+    signed_in
+    env_production
+    
+    " translate="no" data-theme-suffix="_blue" data-checker-special-theme="">
+
+      <input type="hidden" id="hbtn-slack-url" value="https://holberton.enterprise.slack.com">
+      <nav class="navbar navbar-default navbar-fixed-top topbar visible-xs">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-mobile" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <a class="navbar-brand" href="https://intranet.hbtn.io/">
+      <div class="logo"></div>
+</a>  </div>
+
+  <div class="collapse navbar-collapse navigation" id="navbar-mobile">
+    <ul class="nav navbar-nav">
+      
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Help"><a target="_blank" href="https://students-support.hbtn.io/hc"><div class="icon "><i aria-hidden="true" class="fa fa-info-circle"></i></div><div class="visible-xs">Help</div></a></li>
+
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Planning"><a href="https://intranet.hbtn.io/dashboards/my_planning"><div class="icon "><i aria-hidden="true" class="fa fa-calendar"></i></div><div class="visible-xs">Planning</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-current-projects-item" title="" data-original-title="Projects"><a href="https://intranet.hbtn.io/dashboards/my_current_projects"><div class="icon "><i aria-hidden="true" class="fa fa-code-fork"></i></div><div class="visible-xs">Projects</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Professional track"><a href="https://intranet.hbtn.io/dashboards/my_professional_track"><div class="icon "><i aria-hidden="true" class="fa fa-thumbs-o-up"></i></div><div class="visible-xs">Professional track</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="QA Reviews"><a href="https://intranet.hbtn.io/dashboards/corrections_i_can_make"><div class="icon "><i aria-hidden="true" class="fa fa-check"></i></div><div class="visible-xs">QA Reviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Mock interviews"><a href="https://intranet.hbtn.io/dashboards/my_current_reefineries"><div class="icon "><i aria-hidden="true" class="fa fa-commenting-o"></i></div><div class="visible-xs">Mock interviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Evaluation quizzes"><a href="https://intranet.hbtn.io/dashboards/my_current_evaluation_quizzes"><div class="icon "><i aria-hidden="true" class="fa fa-question"></i></div><div class="visible-xs">Evaluation quizzes</div></a></li>
+
+    <hr title="My resources">
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Curriculums"><a href="https://intranet.hbtn.io/dashboards/my_curriculums"><div class="icon "><i aria-hidden="true" class="fa fa-graduation-cap"></i></div><div class="visible-xs">Curriculums</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-concepts-item" title="" data-original-title="Concepts"><a href="https://intranet.hbtn.io/dashboards/my_concepts"><div class="icon "><i aria-hidden="true" class="fa fa-file-text"></i></div><div class="visible-xs">Concepts</div></a></li>
+    
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-video-rooms" title="" data-original-title="Conference rooms"><a href="https://intranet.hbtn.io/dashboards/video_rooms"><div class="icon "><i aria-hidden="true" class="fa fa-comments"></i></div><div class="visible-xs">Conference rooms</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Servers"><a href="https://intranet.hbtn.io/dashboards/my_server"><div class="icon "><i aria-hidden="true" class="fa fa-server"></i></div><div class="visible-xs">Servers</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-containers" title="" data-original-title="Sandboxes"><a href="https://intranet.hbtn.io/dashboards/my_containers"><div class="icon "><i aria-hidden="true" class="fa fa-terminal"></i></div><div class="visible-xs">Sandboxes</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Tools"><a href="https://intranet.hbtn.io/dashboards/my_tools"><div class="icon "><i aria-hidden="true" class="fa fa-wrench"></i></div><div class="visible-xs">Tools</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Video on demand"><a href="https://intranet.hbtn.io/dashboards/videos"><div class="icon "><i aria-hidden="true" class="fa fa-film"></i></div><div class="visible-xs">Video on demand</div></a></li>
+
+      <hr title="My campus">
+
+      
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Peers"><a href="https://intranet.hbtn.io/dashboards/my_peers"><div class="icon "><i aria-hidden="true" class="fa fa-users"></i></div><div class="visible-xs">Peers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Captain's Logs"><a href="https://intranet.hbtn.io/dashboards/my_captain_log"><div class="icon "><i aria-hidden="true" class="fa fa-book"></i></div><div class="visible-xs">Captain's Logs</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Officers"><a href="https://intranet.hbtn.io/dashboards/my_officers"><div class="icon "><i aria-hidden="true" class="fa fa-building"></i></div><div class="visible-xs">Officers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Speakers of the Day"><a href="https://intranet.hbtn.io/dashboards/my_speakers_of_the_day"><div class="icon "><i aria-hidden="true" class="fa fa-microphone"></i></div><div class="visible-xs">Speakers of the Day</div></a></li>
+
+
+<hr class="visible-xs">
+
+<li>
+    <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Slack">
+      <a target="_blank" href="https://holberton.enterprise.slack.com/">
+        <div class="image slack">
+          <div class="inner"></div>
+        </div>
+        <div class="visible-xs">Slack</div>
+</a>    </div>
+
+  <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="My Profile">
+    <a href="https://intranet.hbtn.io/users/my_profile">
+        <div class="image ">
+          <div class="inner" style="background-image: url('https://holbertonintranet.s3.amazonaws.com/users/photos/000/001/633/thumb/profilepic1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210830%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210830T034623Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=5add9888e555021eea18ba85ab95eadb8dab38a42f46096d92024f7388bd0f09')"></div>
+        </div>
+
+      <div class="visible-xs">My Profile</div>
+</a>  </div>
+</li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      <div class="hidden-xs navigation sidebar">
+  <a class="logo-container" href="https://intranet.hbtn.io/">
+    <div class="logo"></div>
+</a>
+  <ul>
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Help"><a target="_blank" href="https://students-support.hbtn.io/hc"><div class="icon "><i aria-hidden="true" class="fa fa-info-circle"></i></div><div class="visible-xs">Help</div></a></li>
+
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Planning"><a href="https://intranet.hbtn.io/dashboards/my_planning"><div class="icon "><i aria-hidden="true" class="fa fa-calendar"></i></div><div class="visible-xs">Planning</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-current-projects-item" title="" data-original-title="Projects"><a href="https://intranet.hbtn.io/dashboards/my_current_projects"><div class="icon "><i aria-hidden="true" class="fa fa-code-fork"></i></div><div class="visible-xs">Projects</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Professional track"><a href="https://intranet.hbtn.io/dashboards/my_professional_track"><div class="icon "><i aria-hidden="true" class="fa fa-thumbs-o-up"></i></div><div class="visible-xs">Professional track</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="QA Reviews"><a href="https://intranet.hbtn.io/dashboards/corrections_i_can_make"><div class="icon "><i aria-hidden="true" class="fa fa-check"></i></div><div class="visible-xs">QA Reviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Mock interviews"><a href="https://intranet.hbtn.io/dashboards/my_current_reefineries"><div class="icon "><i aria-hidden="true" class="fa fa-commenting-o"></i></div><div class="visible-xs">Mock interviews</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Evaluation quizzes"><a href="https://intranet.hbtn.io/dashboards/my_current_evaluation_quizzes"><div class="icon "><i aria-hidden="true" class="fa fa-question"></i></div><div class="visible-xs">Evaluation quizzes</div></a></li>
+
+    <hr title="My resources">
+
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Curriculums"><a href="https://intranet.hbtn.io/dashboards/my_curriculums"><div class="icon "><i aria-hidden="true" class="fa fa-graduation-cap"></i></div><div class="visible-xs">Curriculums</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-concepts-item" title="" data-original-title="Concepts"><a href="https://intranet.hbtn.io/dashboards/my_concepts"><div class="icon "><i aria-hidden="true" class="fa fa-file-text"></i></div><div class="visible-xs">Concepts</div></a></li>
+    
+    
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-video-rooms" title="" data-original-title="Conference rooms"><a href="https://intranet.hbtn.io/dashboards/video_rooms"><div class="icon "><i aria-hidden="true" class="fa fa-comments"></i></div><div class="visible-xs">Conference rooms</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Servers"><a href="https://intranet.hbtn.io/dashboards/my_server"><div class="icon "><i aria-hidden="true" class="fa fa-server"></i></div><div class="visible-xs">Servers</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" id="sidebar-dashboards-my-containers" title="" data-original-title="Sandboxes"><a href="https://intranet.hbtn.io/dashboards/my_containers"><div class="icon "><i aria-hidden="true" class="fa fa-terminal"></i></div><div class="visible-xs">Sandboxes</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Tools"><a href="https://intranet.hbtn.io/dashboards/my_tools"><div class="icon "><i aria-hidden="true" class="fa fa-wrench"></i></div><div class="visible-xs">Tools</div></a></li>
+    <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Video on demand"><a href="https://intranet.hbtn.io/dashboards/videos"><div class="icon "><i aria-hidden="true" class="fa fa-film"></i></div><div class="visible-xs">Video on demand</div></a></li>
+
+      <hr title="My campus">
+
+      
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Peers"><a href="https://intranet.hbtn.io/dashboards/my_peers"><div class="icon "><i aria-hidden="true" class="fa fa-users"></i></div><div class="visible-xs">Peers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Captain's Logs"><a href="https://intranet.hbtn.io/dashboards/my_captain_log"><div class="icon "><i aria-hidden="true" class="fa fa-book"></i></div><div class="visible-xs">Captain's Logs</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Officers"><a href="https://intranet.hbtn.io/dashboards/my_officers"><div class="icon "><i aria-hidden="true" class="fa fa-building"></i></div><div class="visible-xs">Officers</div></a></li>
+      <li data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Speakers of the Day"><a href="https://intranet.hbtn.io/dashboards/my_speakers_of_the_day"><div class="icon "><i aria-hidden="true" class="fa fa-microphone"></i></div><div class="visible-xs">Speakers of the Day</div></a></li>
+
+
+<hr class="visible-xs">
+
+<li>
+    <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="Slack">
+      <a target="_blank" href="https://holberton.enterprise.slack.com/">
+        <div class="image slack">
+          <div class="inner"></div>
+        </div>
+        <div class="visible-xs">Slack</div>
+</a>    </div>
+
+  <div data-container="body" data-placement="right" data-toggle="tooltip" title="" data-original-title="My Profile">
+    <a href="https://intranet.hbtn.io/users/my_profile">
+        <div class="image ">
+          <div class="inner" style="background-image: url('https://holbertonintranet.s3.amazonaws.com/users/photos/000/001/633/thumb/profilepic1.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210830%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210830T034623Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=5add9888e555021eea18ba85ab95eadb8dab38a42f46096d92024f7388bd0f09')"></div>
+        </div>
+
+      <div class="visible-xs">My Profile</div>
+</a>  </div>
+</li>
+
+
+  </ul>
+</div>
+
+
+    <main>
+      <div id="layout-bars">
+        
+
+        
+
+        
+
+        
+      </div>
+
+      <article class="">
+        
+<div class="project row">
+  <div class="col-xs-12 col-md-10 col-lg-8 contains-images">
+
+      <h1 class="gap">0x04. Error Analysis</h1>
+
+
+  <ul class="list-group metadata" id="project-metadata">
+
+    <li class="list-group-item">
+      <i aria-hidden="true" class="fa fa-user fa-fw"></i>
+      By Alexa Orrico, Software Engineer at Holberton School
+    </li>
+
+    <li class="list-group-item">
+      <i aria-hidden="true" class="fa fa-cogs fa-fw"></i>
+      Weight: 1
+    </li>
+
+
+
+      <li class="list-group-item">
+        <i aria-hidden="true" class="fa fa-calendar fa-fw"></i>
+          Ongoing second chance project - started 08-23-2021, must end by 08-30-2021 (in about 1 hour)
+          - you're done with <span id="student_task_done_percentage">0</span>% of tasks.
+      </li>
+
+
+
+      <li class="list-group-item">
+        <i aria-hidden="true" class="fa fa-check-square fa-fw"></i>
+        QA review fully automated.
+      </li>
+
+      <div class="gap clean well">
+  <h4>In a nutshell…</h4>
+  <ul>
+
+
+      <li>
+        <strong>Auto QA review:</strong>
+          0.0/40 mandatory
+      </li>
+    <li>
+      <strong>Altogether:</strong>
+        &nbsp;<strong>0.0%</strong>
+        <ul>
+          <li>Mandatory: 0.0%</li>
+            <li>Optional: no optional tasks</li>
+        </ul>
+    </li>
+  </ul>
+</div>
+
+
+</ul>
+
+
+
+    <div id="project_id" style="display: none" data-project-id="489"></div>
+
+
+
+
+      
+
+      
+
+      <div class="gap" id="project-description">
+  <p><img src="error_analysis_files/e3786a3d84e36ff800d8.jpg" alt="" style=""></p>
+
+<h2>Resources</h2>
+
+<p><strong>Read or watch</strong>:</p>
+
+<ul>
+<li><a href="https://intranet.hbtn.io/rltoken/Bn9M-MGfoJrw0-TpHTa9Uw" title="Confusion matrix" target="_blank">Confusion matrix</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/fxhGH4L-87fD_e11L-T0IA" title="Type I and type II errors" target="_blank">Type I and type II errors</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/jn65gXxuPRCOX3zo7ZMAVg" title="Sensitivity and specificity" target="_blank">Sensitivity and specificity</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/a2j2_WIV27HgPCm2rXYW0A" title="Precision and recall" target="_blank">Precision and recall</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/n0icgR0KqaHEdpn3FAbJoQ" title="F1 score" target="_blank">F1 score</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/qocVwJJrC7gC9cOUc2Wn7A" title="What is a Confusion Matrix in Machine Learning?" target="_blank">What is a Confusion Matrix in Machine Learning?</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/YSLbZZN4UAp33VXvfhFWyA" title="Simple guide to confusion matrix terminology" target="_blank">Simple guide to confusion matrix terminology</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/eWYy4ivH1yTEU0SYElZNxA" title="Bias-variance tradeoff" target="_blank">Bias-variance tradeoff</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/aPtj03_mws2J_d50hWU8TA" title="What is bias and variance" target="_blank">What is bias and variance</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/VC4wmuWuQH7Du-uLOZ2AZg" title="Bayes error rate" target="_blank">Bayes error rate</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/x6wgEm5-QbyIehgFZCb2rQ" title="What is Bayes Error in machine learning?" target="_blank">What is Bayes Error in machine learning?</a> </li>
+<li><a href="https://intranet.hbtn.io/rltoken/OXuEmLkHubDofoueWMlY7A" title="Bias/Variance" target="_blank">Bias/Variance</a> (<em>Note: I suggest watching this video at 1.5x - 2x speed</em>)</li>
+<li><a href="https://intranet.hbtn.io/rltoken/gVKdBNxmO8FU3eQaNClVZQ" title="Basic Recipe for Machine Learning" target="_blank">Basic Recipe for Machine Learning</a> (<em>Note: I suggest watching this video at 1.5x - 2x speed</em>)</li>
+<li><a href="https://intranet.hbtn.io/rltoken/M6c62wjBk5AOOowkj14ITA" title="Why Human Level Performance" target="_blank">Why Human Level Performance</a> (<em>Note: I suggest watching this video at 1.5x - 2x speed</em>)</li>
+<li><a href="https://intranet.hbtn.io/rltoken/1yhh1YA_Xa_R3t0xUy4p9Q" title="Avoidable Bias" target="_blank">Avoidable Bias</a> (<em>Note: I suggest watching this video at 1.5x - 2x speed</em>)</li>
+<li><a href="https://intranet.hbtn.io/rltoken/YtDkYixp6TUAxMc4liTtBg" title="Understanding Human-Level Performance" target="_blank">Understanding Human-Level Performance</a> (<em>Note: I suggest watching this video at 1.5x - 2x speed</em>)</li>
+</ul>
+
+<h2>Learning Objectives</h2>
+
+<p>At the end of this project, you are expected to be able to <a href="https://intranet.hbtn.io/rltoken/OJ0RLX0aI96lfsTWbsmS3w" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+
+<h3>General</h3>
+
+<ul>
+<li>What is the confusion matrix?</li>
+<li>What is type I error? type II?</li>
+<li>What is sensitivity? specificity? precision? recall?</li>
+<li>What is an F1 score?</li>
+<li>What is bias? variance?</li>
+<li>What is irreducible error?</li>
+<li>What is Bayes error?</li>
+<li>How can you approximate Bayes error?</li>
+<li>How to calculate bias and variance</li>
+<li>How to create a confusion matrix</li>
+</ul>
+
+<h2>Requirements</h2>
+
+<h3>General</h3>
+
+<ul>
+<li>Allowed editors: <code>vi</code>, <code>vim</code>, <code>emacs</code></li>
+<li>All your files will be interpreted/compiled on Ubuntu 16.04 LTS using <code>python3</code> (version 3.5)</li>
+<li>Your files will be executed with <code>numpy</code> (version 1.15)</li>
+<li>All your files should end with a new line</li>
+<li>The first line of all your files should be exactly <code>#!/usr/bin/env python3</code></li>
+<li>A <code>README.md</code> file, at the root of the folder of the project, is mandatory</li>
+<li>Your code should use the <code>pycodestyle</code> style (version 2.4)</li>
+<li>All your modules should have documentation (<code>python3 -c 'print(__import__("my_module").__doc__)'</code>)</li>
+<li>All your classes should have documentation (<code>python3 -c 'print(__import__("my_module").MyClass.__doc__)'</code>)</li>
+<li>All your functions (inside and outside a class) should have documentation (<code>python3 -c 'print(__import__("my_module").my_function.__doc__)'</code> and <code>python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'</code>)</li>
+<li>Unless otherwise noted, you are not allowed to import any module except <code>import numpy as np</code></li>
+<li>All your files must be executable</li>
+<li>The length of your files will be tested using <code>wc</code></li>
+</ul>
+
+</div>
+
+
+      
+
+      
+
+        
+          <h2 class="gap">Tasks</h2>
+
+    <div data-role="task3708" data-position="1" id="task-num-0">
+      <div class="panel panel-default task-card " id="task-3708">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      0. Create Confusion
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3708" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Write the function <code>def create_confusion_matrix(labels, logits):</code> that creates a confusion matrix:</p>
+
+<ul>
+<li><code>labels</code> is a one-hot <code>numpy.ndarray</code> of shape <code>(m, classes)</code> containing the correct labels for each data point
+
+<ul>
+<li><code>m</code> is the number of data points</li>
+<li><code>classes</code> is the number of classes</li>
+</ul></li>
+<li><code>logits</code> is a one-hot <code>numpy.ndarray</code> of shape <code>(m, classes)</code> containing the predicted labels</li>
+<li>Returns: a confusion <code>numpy.ndarray</code> of shape <code>(classes, classes)</code> with row indices representing the correct labels and column indices representing the predicted labels</li>
+</ul>
+
+<p>To accompany the following main file, you are provided with <a href="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-ml/labels_logits.npz" title="labels_logits.npz" target="_blank">labels_logits.npz</a>. This file does not need to be pushed to GitHub, nor will it be used to check your code.</p>
+
+<pre><code>alexa@ubuntu-xenial:0x04-error_analysis$ cat 0-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+create_confusion_matrix = __import__('0-create_confusion').create_confusion_matrix
+
+if __name__ == '__main__':
+    lib = np.load('labels_logits.npz')
+    labels = lib['labels']
+    logits = lib['logits']
+
+    np.set_printoptions(suppress=True)
+    confusion = create_confusion_matrix(labels, logits)
+    print(confusion)
+    np.savez_compressed('confusion.npz', confusion=confusion)
+alexa@ubuntu-xenial:0x04-error_analysis$ ./0-main.py 
+[[4701.    0.   36.   17.   12.   81.   38.   11.   35.    1.]
+ [   0. 5494.   36.   21.    3.   38.    7.   13.   59.    7.]
+ [  64.   93. 4188.  103.  108.   17.  162.   80.  132.   21.]
+ [  30.   48.  171. 4310.    2.  252.   22.   86.  128.   52.]
+ [  17.   27.   35.    0. 4338.   11.   84.    9.   27.  311.]
+ [  89.   57.   45.  235.   70. 3631.  123.   33.  163.   60.]
+ [  47.   32.   87.    1.   64.   83. 4607.    0.   29.    1.]
+ [  26.   95.   75.    7.   58.   18.    1. 4682.   13.  200.]
+ [  31.  153.   82.  174.   27.  179.   64.    7. 4003.  122.]
+ [  48.   37.   39.   71.  220.   49.    8.  244.   46. 4226.]]
+alexa@ubuntu-xenial:0x04-error_analysis$
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>0-create_confusion.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3708">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3708" data-project-id="489" data-toggle="modal" data-target="#task-3708-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3708-users-done-modal" data-task-id="3708" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "0. Create Confusion"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3708" data-toggle="modal" data-target="#task-test-correction-3708-correction-modal" id="task-num-0-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3708-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "0. Create Confusion"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3708">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3708">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3708">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3708" data-toggle="modal" data-target="#task-qa-review-3708-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3708-modal" data-correction-id="240051" data-task-id="3708">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">0. Create Confusion</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3709" data-position="2" id="task-num-1">
+      <div class="panel panel-default task-card " id="task-3709">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      1. Sensitivity
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3709" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Write the function <code>def sensitivity(confusion):</code> that calculates the sensitivity for each class in a confusion matrix:</p>
+
+<ul>
+<li><code>confusion</code> is a confusion <code>numpy.ndarray</code>  of shape <code>(classes, classes)</code> where row indices represent the correct labels and column indices represent the predicted labels
+
+<ul>
+<li><code>classes</code> is the number of classes</li>
+</ul></li>
+<li>Returns: a <code>numpy.ndarray</code> of shape <code>(classes,)</code> containing the sensitivity of each class</li>
+</ul>
+
+<pre><code>alexa@ubuntu-xenial:0x04-error_analysis$ cat 1-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+sensitivity = __import__('1-sensitivity').sensitivity
+
+if __name__ == '__main__':
+    confusion = np.load('confusion.npz')['confusion']
+
+    np.set_printoptions(suppress=True)
+    print(sensitivity(confusion))
+alexa@ubuntu-xenial:0x04-error_analysis$ ./1-main.py 
+[0.95316302 0.96759422 0.84299517 0.84493237 0.89277629 0.80581447
+ 0.93051909 0.9047343  0.82672449 0.84723336]
+alexa@ubuntu-xenial:0x04-error_analysis$ 
+</code></pre>
+
+<p><code>confusion.npz</code> :</p>
+
+<ul>
+<li>The file is coming from the output <code>0-create_confusion.py</code></li>
+<li>Or you can use this one: <a href="https://holbertonintranet.s3.amazonaws.com/uploads/misc/2021/1/3fb43ca796536b2fef793b68eca0b5adbb923fd9.npz?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210830%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20210830T034623Z&amp;X-Amz-Expires=345600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0ed3c9112d002600ebc1154a1fc2a007dc9111ad06a634b16296460760dcacfe" title="confusion.npz" target="_blank">confusion.npz</a></li>
+</ul>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>1-sensitivity.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3709">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3709" data-project-id="489" data-toggle="modal" data-target="#task-3709-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3709-users-done-modal" data-task-id="3709" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "1. Sensitivity"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3709" data-toggle="modal" data-target="#task-test-correction-3709-correction-modal" id="task-num-1-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3709-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "1. Sensitivity"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3709">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3709">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3709">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3709" data-toggle="modal" data-target="#task-qa-review-3709-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3709-modal" data-correction-id="240051" data-task-id="3709">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">1. Sensitivity</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3710" data-position="3" id="task-num-2">
+      <div class="panel panel-default task-card " id="task-3710">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      2. Precision
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3710" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Write the function <code>def precision(confusion):</code> that calculates the precision for each class in a confusion matrix:</p>
+
+<ul>
+<li><code>confusion</code> is a confusion <code>numpy.ndarray</code>  of shape <code>(classes, classes)</code> where row indices represent the correct labels and column indices represent the predicted labels
+
+<ul>
+<li><code>classes</code> is the number of classes</li>
+</ul></li>
+<li>Returns: a <code>numpy.ndarray</code> of shape <code>(classes,)</code> containing the precision of each class</li>
+</ul>
+
+<pre><code>alexa@ubuntu-xenial:0x04-error_analysis$ cat 2-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+precision = __import__('2-precision').precision
+
+if __name__ == '__main__':
+    confusion = np.load('confusion.npz')['confusion']
+
+    np.set_printoptions(suppress=True)
+    print(precision(confusion))
+alexa@ubuntu-xenial:0x04-error_analysis$ ./2-main.py 
+[0.93033841 0.91020543 0.87359199 0.87264628 0.88494492 0.83298922
+ 0.90050821 0.90648596 0.86364617 0.84503099]
+alexa@ubuntu-xenial:0x04-error_analysis$
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>2-precision.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3710">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3710" data-project-id="489" data-toggle="modal" data-target="#task-3710-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3710-users-done-modal" data-task-id="3710" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "2. Precision"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3710" data-toggle="modal" data-target="#task-test-correction-3710-correction-modal" id="task-num-2-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3710-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "2. Precision"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3710">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3710">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3710">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3710" data-toggle="modal" data-target="#task-qa-review-3710-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3710-modal" data-correction-id="240051" data-task-id="3710">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">2. Precision</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3711" data-position="4" id="task-num-3">
+      <div class="panel panel-default task-card " id="task-3711">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      3. Specificity
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3711" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Write the function <code>def specificity(confusion):</code> that calculates the specificity for each class in a confusion matrix:</p>
+
+<ul>
+<li><code>confusion</code> is a confusion <code>numpy.ndarray</code>  of shape <code>(classes, classes)</code> where row indices represent the correct labels and column indices represent the predicted labels
+
+<ul>
+<li><code>classes</code> is the number of classes</li>
+</ul></li>
+<li>Returns: a <code>numpy.ndarray</code> of shape <code>(classes,)</code> containing the specificity of each class</li>
+</ul>
+
+<pre><code>alexa@ubuntu-xenial:0x04-error_analysis$ cat 3-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+specificity = __import__('3-specificity').specificity
+
+if __name__ == '__main__':
+    confusion = np.load('confusion.npz')['confusion']
+
+    np.set_printoptions(suppress=True)
+    print(specificity(confusion))
+alexa@ubuntu-xenial:0x04-error_analysis$ ./3-main.py 
+[0.99218958 0.98777131 0.9865429  0.98599078 0.98750582 0.98399789
+ 0.98870119 0.98922476 0.98600469 0.98278237]
+alexa@ubuntu-xenial:0x04-error_analysis$
+</code></pre>
+
+<p>When there are more than two classes in a confusion matrix, 
+specificity is not a useful metric as there are inherently more actual 
+negatives than actual positives. It is much better to use sensitivity 
+(recall) and precision.</p>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>3-specificity.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3711">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3711" data-project-id="489" data-toggle="modal" data-target="#task-3711-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3711-users-done-modal" data-task-id="3711" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "3. Specificity"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3711" data-toggle="modal" data-target="#task-test-correction-3711-correction-modal" id="task-num-3-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3711-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "3. Specificity"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3711">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3711">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3711">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3711" data-toggle="modal" data-target="#task-qa-review-3711-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3711-modal" data-correction-id="240051" data-task-id="3711">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">3. Specificity</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3712" data-position="5" id="task-num-4">
+      <div class="panel panel-default task-card " id="task-3712">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      4. F1 score
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3712" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Write the function <code>def f1_score(confusion):</code> that calculates the F1 score of a confusion matrix:</p>
+
+<ul>
+<li><code>confusion</code> is a confusion <code>numpy.ndarray</code>  of shape <code>(classes, classes)</code> where row indices represent the correct labels and column indices represent the predicted labels
+
+<ul>
+<li><code>classes</code> is the number of classes</li>
+</ul></li>
+<li>Returns: a <code>numpy.ndarray</code> of shape <code>(classes,)</code> containing the F1 score of each class</li>
+<li>You must use <code>sensitivity = __import__('1-sensitivity').sensitivity</code> and <code>precision = __import__('2-precision').precision</code> create previously</li>
+</ul>
+
+<pre><code>alexa@ubuntu-xenial:0x04-error_analysis$ cat 4-main.py 
+#!/usr/bin/env python3
+
+import numpy as np
+f1_score = __import__('4-f1_score').f1_score
+
+if __name__ == '__main__':
+    confusion = np.load('confusion.npz')['confusion']
+
+    np.set_printoptions(suppress=True)
+    print(f1_score(confusion))
+alexa@ubuntu-xenial:0x04-error_analysis$ ./4-main.py 
+[0.94161242 0.93802288 0.8580209  0.85856574 0.88884336 0.81917654
+ 0.91526771 0.90560928 0.8447821  0.84613074]
+alexa@ubuntu-xenial:0x04-error_analysis$
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>4-f1_score.py</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3712">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3712" data-project-id="489" data-toggle="modal" data-target="#task-3712-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3712-users-done-modal" data-task-id="3712" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "4. F1 score"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3712" data-toggle="modal" data-target="#task-test-correction-3712-correction-modal" id="task-num-4-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3712-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "4. F1 score"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3712">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3712">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3712">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3712" data-toggle="modal" data-target="#task-qa-review-3712-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3712-modal" data-correction-id="240051" data-task-id="3712">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">4. F1 score</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3714" data-position="6" id="task-num-5">
+      <div class="panel panel-default task-card " id="task-3714">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      5. Dealing with Error
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3714" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>In the text file <code>5-error_handling</code>, write the 
+lettered answer to the question of how you should approach the following
+ scenarios. Please write the answer to each scenario on a different 
+line. If there is more than one way to approach a scenario, please use 
+CSV formatting and place your answers in alphabetical order (ex. <code>A,B,C</code>):</p>
+
+<p>Scenarios:</p>
+
+<pre><code>1. High Bias, High Variance
+2. High Bias, Low Variance
+3. Low Bias, High Variance
+4. Low Bias, Low Variance
+</code></pre>
+
+<p>Approaches:</p>
+
+<pre><code>A. Train more
+B. Try a different architecture
+C. Get more data
+D. Build a deeper network
+E. Use regularization
+F. Nothing
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>5-error_handling</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3714">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3714" data-project-id="489" data-toggle="modal" data-target="#task-3714-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3714-users-done-modal" data-task-id="3714" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "5. Dealing with Error"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3714" data-toggle="modal" data-target="#task-test-correction-3714-correction-modal" id="task-num-5-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3714-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "5. Dealing with Error"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3714">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3714">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3714">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3714" data-toggle="modal" data-target="#task-qa-review-3714-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3714-modal" data-correction-id="240051" data-task-id="3714">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">5. Dealing with Error</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+    <div data-role="task3715" data-position="7" id="task-num-6">
+      <div class="panel panel-default task-card " id="task-3715">
+  <span id="user_id" data-id="1633"></span>
+
+  <div class="panel-heading panel-heading-actions">
+    <h3 class="panel-title">
+      6. Compare and Contrast
+    </h3>
+
+    <div>
+        <span class="label label-info">
+          mandatory
+        </span>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <span id="user_id" data-id="1633"></span>
+
+    
+
+    <!-- Progress vs Score -->
+      <div class="task_progress_score_bar" data-task-id="3715" data-correction-id="240051">
+        <div class="task_progress_bar" style="width: 0%;">
+          <div class="task_score_bar">
+          </div>
+        </div>
+        <div class="task_progress_score_text">
+          Score: <span class="task_score_value">0.00%</span> (<span class="task_progress_value">Checks completed: 0.00%</span>)
+        </div>
+      </div>
+
+    <!-- Task Body -->
+    <p>Given the following training and validation confusion matrices 
+and the fact that human level performance has an error of ~14%, 
+determine what the most important issue is and write the lettered answer
+ in the file <code>6-compare_and_contrast</code></p>
+
+<p><img src="error_analysis_files/03c511c109a790a30bbe.png" alt="" style=""></p>
+
+<p><img src="error_analysis_files/8f5d5fdab6420a22471b.png" alt="" style=""></p>
+
+<p>Most important issue:</p>
+
+<pre><code>A. High Bias
+B. High Variance
+C. Nothing
+</code></pre>
+
+  </div>
+
+  <div class="list-group">
+    <!-- Task URLs -->
+
+    <!-- Github information -->
+      <div class="list-group-item">
+        <p><strong>Repo:</strong></p>
+        <ul>
+          <li>GitHub repository: <code>holbertonschool-machine_learning</code></li>
+            <li>Directory: <code>supervised_learning/0x04-error_analysis</code></li>
+            <li>File: <code>6-compare_and_contrast</code></li>
+        </ul>
+      </div>
+
+    <!-- Self-paced manual review -->
+  </div>
+
+  <!-- Panel footer - Controls -->
+
+    <div class="panel-footer">
+      
+<div>
+    <button class="student_task_done btn btn-default no" data-task-id="3715">
+      <span class="no"><i aria-hidden="true" class="fa fa-square-o"></i></span>
+      <span class="yes"><i aria-hidden="true" class="fa fa-check-square-o"></i></span>
+      <span class="pending"><i aria-hidden="true" class="fa fa-spinner fa-pulse"></i></span>
+      Done<span class="no pending">?</span><span class="yes">!</span>
+    </button>
+
+    <button class="users_done_for_task btn btn-default btn-default" data-task-id="3715" data-project-id="489" data-toggle="modal" data-target="#task-3715-users-done-modal">
+      Help
+    </button>
+    <div class="modal fade users-done-modal" id="task-3715-users-done-modal" data-task-id="3715" data-project-id="489">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">Students who are done with "6. Compare and Contrast"</h4>
+        </div>
+        <div class="modal-body">
+            <div class="list-group">
+            </div>
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="error"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+      <button class="btn btn-default" data-task-id="3715" data-toggle="modal" data-target="#task-test-correction-3715-correction-modal" id="task-num-6-check-code-btn">
+        Check your code
+      </button>
+      <div class="modal fade task_correction_modal student_modal" id="task-test-correction-3715-correction-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Correction of "6. Compare and Contrast"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="actions">
+                    <center>
+                        <div class="alert alert-info hidden"></div>
+
+                        <button name="button" type="submit" class="btn btn-primary correction_request_test_send" data-task-id="3715">Start a new test</button>
+                        <button class="btn btn-default close-modal hidden" data-dismiss="modal" type="button">Close</button>
+
+                        <div class="spinner" style="display: none;">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div class="info"></div>
+
+
+                    </center>
+                </div>
+                <div class="result"></div>
+
+                <div class="help">
+    <button data-task-id="3715">
+        <i aria-hidden="true" class="fa fa-info-circle"></i>
+    </button>
+    <div class="help-container" data-task-id="3715">
+        <div class="check-line">
+            <div class="check-inline requirement success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Requirement success
+            </div>
+            <div class="check-inline requirement fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Requirement fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline code success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Code success
+            </div>
+            <div class="check-inline code fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Code fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline efficiency success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Efficiency success
+            </div>
+            <div class="check-inline efficiency fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Efficiency fail
+            </div>
+        </div>
+        <div class="check-line">
+            <div class="check-inline answer success">
+                  <i aria-hidden="true" class="fa fa-check-circle"></i>
+                Text answer success
+            </div>
+            <div class="check-inline answer fail">
+                  <i aria-hidden="true" class="fa fa-times-circle"></i>
+                Text answer fail
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+      <button class="btn btn-default" data-task-id="3715" data-toggle="modal" data-target="#task-qa-review-3715-modal">
+        QA Review
+      </button>
+      <div class="modal fade task_get_qa_review" id="task-qa-review-3715-modal" data-correction-id="240051" data-task-id="3715">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">6. Compare and Contrast</h4>
+            </div>
+            <div class="modal-body">
+                <div class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div class="review-container">
+                    <div class="review-corrector"></div>
+                    <div class="review-github"></div>
+                    <div class="review-percentage_down"></div>
+                    <ul class="review-checks list-group sm-gap"></ul>
+                    <div class="review-comment"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </div>
+
+
+</div>
+
+    </div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+      </article>
+
+      <div class="copyright">Copyright © 2021 Holberton Inc, All rights reserved.</div>
+    </main>
+
+      <button class="btn btn-primary" id="search-button" data-search-active="false" data-toggle="modal" data-target="#search-modal">
+  <i aria-hidden="true" class="fa fa-search"></i>
+  <i aria-hidden="true" class="fa fa-window-minimize"></i>
+</button>
+
+      <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-labelledby="search-modal-label">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="search-bar-container">
+    <input id="search-bar" type="text" name="hbtn-search-bar" placeholder="✨Start search by typing in this field✨">
+</div>
+
+            </div>
+            <div class="modal-body">
+                <div id="modal-spinner" class="spinner gap">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <div id="search-results-container">
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+      <div class="modal fade" id="markdownGuideModal" tabindex="-1" role="dialog" aria-labelledby="markdownGuideModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Markdown Guide</h4>
+        </div>
+        <div class="modal-body">
+            <h4>Emphasis</h4>
+<pre>**<strong>bold</strong>**
+*<em>italics</em>*
+~~<strike>strikethrough</strike>~~</pre>
+<h4>Headers</h4>
+<pre># Big header
+## Medium header
+### Small header
+#### Tiny header</pre>
+<h4>Lists</h4>
+<pre>* Generic list item
+* Generic list item
+* Generic list item
+
+1. Numbered list item
+2. Numbered list item
+3. Numbered list item</pre>
+<h4>Links</h4>
+<pre>[Text to display](http://www.example.com)</pre>
+<h4>Quotes</h4>
+<pre>&gt; This is a quote.
+&gt; It can span multiple lines!</pre>
+<h4>Images</h4>
+<p>CSS style available: <code>width, height, opacity</code></p>
+<pre>![](http://www.example.com/image.jpg)
+![](http://www.example.com/image.jpg | width: 200px)
+![](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+</pre>
+<h4>Tables</h4>
+<pre>| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+<em>Or without aligning the columns...</em>
+
+| Column 1 | Column 2 | Column 3 |
+| -------- | -------- | -------- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+</pre>
+<h4>Displaying code</h4>
+<pre>`var example = "hello!";`
+
+<em>Or spanning multiple lines...</em>
+
+```
+var example = "hello!";
+alert(example);
+```</pre>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create',
+            'UA-67152800-6',
+            'auto', {
+              userId: '1633'
+            }
+          );
+
+        ga('send', 'pageview');
+
+        $(document).ready(function() {
+          ga(function(tracker) {
+            var clientId = tracker.get('clientId');
+            $('.ga-client-id').val(clientId);
+          });
+        });
+      </script>
+
+
+
+      <input id="checker_pride_assets" type="hidden" value="[]">
+
+      
+  
+
+</body></html>
