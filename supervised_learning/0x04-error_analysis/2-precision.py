@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ 2-precision task """
+import numpy as np
 
 
 def precision(confusion):
