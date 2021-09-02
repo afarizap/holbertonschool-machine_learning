@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """ 0-sequential task """
 import tensorflow.keras as K
-from tensorflow.python.keras.backend import dropout
-from tensorflow.python.keras.layers.core import Dropout
-from tensorflow.python.keras.regularizers import Regularizer
+
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """
